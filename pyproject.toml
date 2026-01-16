@@ -1,0 +1,9 @@
+[project]
+name = "interpretation-models"
+version = "0.1.0"
+description = "Interpretation models maintained by the SID team"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2, <3",
+]
