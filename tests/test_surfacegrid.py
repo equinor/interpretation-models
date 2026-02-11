@@ -2,6 +2,7 @@ import pytest
 from pydantic import ValidationError
 from models.surfacegrid import SurfaceGrid
 
+
 def test_surface_grid_missing_required_field():
     with pytest.raises(ValidationError):
         SurfaceGrid(
