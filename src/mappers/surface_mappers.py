@@ -1,6 +1,6 @@
 """Mappers for SurfaceGrid model conversions."""
 
-from models.surfacegrid import Surface
+from models.surface import Surface
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
