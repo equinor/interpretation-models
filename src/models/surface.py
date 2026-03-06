@@ -1,36 +1,25 @@
-from datetime import datetime
+from pydantic import BaseModel
 from models.interpretation import Interpretation
 
 
+class GridGeometry(BaseModel):
+    ncol: int | None = None
+    nrow: int | None = None
+    xori: float | None = None
+    yori: float | None = None
+    xinc: float | None = None
+    yinc: float | None = None
+    rotation: float | None = None
+    left_handed: bool | None = True  # yflip
+
+
 class Surface(Interpretation):
-    # Required geometry
-    ncol: int
-    nrow: int
-    xori: float
-    yori: float
-    xinc: float
-    yinc: float
-    rotation: float
-    # yflip: int  # handedness?
-
-    # Surface properties
-    geo_name: str | None = None
-    geo_type: str | None = None
-    z_unit: str | None = None
-    z_non: float | None = None
-    z_domain: str | None = None
-    attribute_source: str | None = None
-    interpreter_source: str | None = None
-    remark_source: str | None = None
-    business_project_source: str | None = None      # Petrel Studio
-    data_status_source: str | None = None           # Petrel Studio
-    confidence_factor_source: str | None = None     # Petrel Studio
-
-    # SID
-    file_availability: str
+    geometry: GridGeometry | None = None
+    parent_surface_id: str | None = (
+        None  # for SurfaceGridProperties objects? source or SID id?
+    )
 
     # Redundant?
+    z_non: float | None = None
     ntotal: int | None = None
     nnan: int | None = None
-    deleted: bool | None = None
-    deleted_date: datetime | None = None
