@@ -5,10 +5,24 @@ description = "Interpretation models maintained by the SID team"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "dsis-schemas>=0.0.6",
     "pydantic>=2, <3",
 ]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"models" = ["py.typed"]
 
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
+    "mypy>=1.19.1",
+    "ruff>=0.15.0",
+    "ipykernel>=7.2.0",
 ]
