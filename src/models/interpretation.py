@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 from models.extent import Extent
-from models.origin import SourceSystem, Collection, Database, Project
+from models.origin import Collection, Project
 
 
 class OWMetadata(BaseModel):
@@ -17,7 +17,7 @@ class PetrelMetadata(BaseModel):
 
 
 class SourceMetadata(BaseModel):
-    system: SourceSystem
+    project: Project
     native_uid: str | None = None
     name: str
     crs: str
@@ -36,8 +36,6 @@ class SourceMetadata(BaseModel):
 
 class PipelineMetadata(BaseModel):
     id: str  # SID UUID
-    database: Database | None = None
-    project: Project | None = None
     create_date: datetime | None = None
     update_date: datetime | None = None
     file_availability: str | None = None

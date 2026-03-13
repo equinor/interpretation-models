@@ -7,15 +7,11 @@ class SourceSystem(str, Enum):
     PETREL = "Petrel Studio"
 
 
-class Database(BaseModel):
+class Project(BaseModel):
+    source_system: SourceSystem
+    database: str
     name: str
     timezone: str
-
-
-class Project(BaseModel):
-    name: str
-    database: Database | None = None
-    smda_uuid: str | None = None
     last_pipeline_run_date: str | None = None
 
 

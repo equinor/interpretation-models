@@ -3,10 +3,10 @@ from pathlib import Path
 
 import pytest
 from dsis_model_sdk.models.common import SurfaceGrid
-from mappers.surface_helpers import normalize_surfacegrid_payload
+from mappers.mappers_dsis import normalize_surfacegrid_payload
 
 from models.interpretation import PipelineMetadata
-from models.origin import Database, Project
+from models.origin import SourceSystem, Project
 
 
 @pytest.fixture
@@ -31,8 +31,14 @@ def surfacegrid_obj(surfacegrid_payload_normalized: dict) -> SurfaceGrid:
 def pipeline_metadata() -> PipelineMetadata:
     return PipelineMetadata(
         id="11111111-1111-1111-1111-111111111111",
-        project=Project(
-            name="VOLVE_PUBLIC",
-        ),
-        database=Database(name="BG4FROST", timezone="Europe/Berlin"),
+    )
+
+
+@pytest.fixture
+def project() -> Project:
+    return Project(
+        source_system=SourceSystem.OPENWORKS,
+        database="BG4FROST",
+        name="VOLVE_PUBLIC",
+        timezone="Europe/Berlin",
     )
