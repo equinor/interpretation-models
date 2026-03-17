@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  release:
+    name: Release
+    uses: equinor/ops-actions/.github/workflows/release-please.yml@v9.33.0
+    with:
+      release_type: python
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+  build:
+    name: Build
+    needs: release
+    if: needs.release.outputs.release_created == 'true'
+    uses: equinor/ops-actions/.github/workflows/python-package.yml@v9.33.0
+    permissions:
+      contents: read
