@@ -14,6 +14,11 @@ mapping and bridging their different formats and data models. The intention is t
 
 ## Scope
 
+All interpretation objects handled in this repo are expected to have a model with dict-style metadata (tabular) and
+an array containing data points (values). An introduction to interpretations, the contents of these arrays,
+and the different data types can be found [in this interpretations primer doc](./docs/interpretations.md).
+
+
 ### Data types
 
 Interpretation objects expected to be supported:
@@ -23,9 +28,6 @@ Interpretation objects expected to be supported:
 - polygons
 - point sets
 
-All interpretation objects handled in this repo are expected to have a model with tabular-style metadata and
-an array containing data points (values). An introduction to interpretations, the contents of these arrays,
-and the different data types can be found in [docs/interpretations.md](./docs/interpretations.md)
 
 ### Source systems
 
@@ -46,31 +48,51 @@ This repository provides an internal representation of collections, explicit map
 and consistently handling the relationships between collections and interpretation objects. This is crucial to many workflows
 supported by the mapping, frequently to help users group and filter the data they wish to transfer from one system to another.
 
-## Architecture
+### Currently supported
+
+Combinations of data type and source will be added here as they are progressively implemented in this repository. The current list of supported combinations is:
+
+- Coming soon... :)
+
+
+## Design
+
+### Components
 
 This repo is mostly separated into four major components based on the different objects:
 
-- Interpretation models (src/models)
+#### Interpretation models (src/models)
 
 Define the internal composable, hierarchical Python classes to describe interpretation metadata and structure.
+
 Design rules in docs/models.md
 
-- Model mapping (src/mappers)
+#### Model mapping (src/mappers)
 
 Provide deterministic mappers between source-system models and the internal interpretation model
+
 Design rules in docs/mappers.md
 
-- Validation (src/validations)
+#### Validation (src/validations)
 
 Apply schema- and content-level validation and recording the results, without blocking data flow.
+
 Design rules in docs/validation.md
 
-- Table schemas and relationships (src/tables)
+#### Table schemas and relationships (src/tables)
 
 This bridges the gap between pydantic models and the need to generate table schemas for representation
-of the internal model in intermediate storage. this includes flattening rules for attribute names,
-representing FKs, m:n relationship tables, especially for collections.
+of the internal model in storage. It includes flattening rules for attribute names,
+representing FKs, creating m:n relationship tables, especially for collections.
 Design rules in docs/tables.md
+
+### Data flow
+
+At a high level, this repository is organised around models and mappings. Those components are put together to build 
+data flows for each supported combination of system and datatype.
+We encourage the reader to explore two of such suggested data flows [in this  data flows doc](./docs/dataflow.md) - one with a data lake
+medallion architecture pipeline approach and another with a simple ETL directly from source to OSDU usinf the internal
+model only as an in-memory bridge
 
 ## Considerations
 
@@ -116,7 +138,4 @@ It is designed to be used anywhere interpretation data needs to be understood, t
 
 That said, it is influenced by the design needs of data pipelines exchanging data between different source systems,
 especially from legacy source systems into OSDU, so considerations regarding the data modelling and processing of this
-type of workflow are front and center in the design. As an example, the table schemas are meant to allow storage of the
-converted data in a data lake and allow validation and filtering before transferring it to a target system like OSDU.
-However, it should be flexible enough to allow other strategies - for example, the data can be directly in-memory further
-converted to the target system, and validation/QC can be performed there.
+type of workflow are front and center in the design, as is the case in the example of creating table schemas for intermediate storage.
