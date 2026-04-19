@@ -50,7 +50,8 @@ supported by the mapping, frequently to help users group and filter the data the
 
 ### Currently supported
 
-Combinations of data type and source will be added here as they are progressively implemented in this repository. The current list of supported combinations is:
+Combinations of data type and source will be added here as they are progressively implemented in this repository.
+The current list of supported combinations is:
 
 - Coming soon... :)
 
@@ -88,11 +89,11 @@ Design rules in docs/tables.md
 
 ### Data flow
 
-At a high level, this repository is organised around models and mappings. Those components are put together to build 
+At a high level, this repository is organised around models and mappings. Those components are put together to build
 data flows for each supported combination of system and datatype.
-We encourage the reader to explore two of such suggested data flows [in this  data flows doc](./docs/dataflow.md) - one with a data lake
-medallion architecture pipeline approach and another with a simple ETL directly from source to OSDU usinf the internal
-model only as an in-memory bridge
+We encourage the reader to explore two of such suggested data flows [in this  data flows doc](./docs/dataflow.md) 
+- one with a data lake medallion architecture pipeline approach and another with a simple ETL directly from source to
+OSDU using the internal model only as an in-memory bridge
 
 ## Considerations
 
@@ -124,12 +125,12 @@ The internal interpretation model should be:
 
 ### xtgeo compatibility
 
-Many of the interpretation datatypes are also represented by [xtgeo](https://xtgeo.readthedocs.io/en/latest/index.html).
-The aim is different, as xtgeo is mainly used for manipulation and transformations on the arrays of data points (such as
-sampling, smoothing, etc) and their respecive bulk files, while this is aimed at mapping and validating the models.
-Where applicable, we use xtgeo for transformations and aim to be compatible with it - it should be possible to generate,
-for example, an xtgeo.RegularSurface from the internal model's SurfaceGrid representation, which can be then used for
-plotting, validation and manual QC.
+Many of the interpretation datatypes are also represented by [xtgeo](https://xtgeo.readthedocs.io/en/latest/index.html)
+The aim is different, as xtgeo is mainly used for manipulation and transformations on the arrays of data points (such
+as sampling, smoothing, etc) and their respecive bulk files, while this is aimed at mapping and validating the models.
+Where applicable, we use xtgeo for transformations and aim to be compatible with it - it should be possible to
+generate, for example, an xtgeo.RegularSurface from the internal model's SurfaceGrid representation, which can be then
+used for plotting, validation and manual QC.
 
 ### Storage formats and processing tools
 
@@ -138,4 +139,5 @@ It is designed to be used anywhere interpretation data needs to be understood, t
 
 That said, it is influenced by the design needs of data pipelines exchanging data between different source systems,
 especially from legacy source systems into OSDU, so considerations regarding the data modelling and processing of this
-type of workflow are front and center in the design, as is the case in the example of creating table schemas for intermediate storage.
+type of workflow are front and center in the design, as is the case in the example of creating table schemas for
+intermediate storage.
