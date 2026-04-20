@@ -31,11 +31,11 @@ Concrete datatypes inherit from `InterpretationRecord`, directly or through the 
 ```mermaid
 classDiagram
     class InterpretationRecord {
-        source_metadata
-        processing_metadata
+        source
+        processing
         extent
-        coordinate_reference_system
-        domain
+        crs
+        z_domain
         z_unit
     }
 
@@ -44,7 +44,8 @@ classDiagram
     }
 
     class VectorInterpretationRecord {
-        subobject_count
+        num_points
+        num_properties
     }
 
     class SurfaceGridRecord
@@ -129,7 +130,8 @@ However, this information is usually not present at the object response as it co
 Typically, the user queries a database and project, and receives an object which, within that database and project, is uniquely identifiable.
 Therefore, we need to provide the processing client a way to inform the database and project *outside* the typed object that represents the response it receives from the source server, so that those attributes can be added to the InterpretationRecord.
 
-For that, we include the `SourceContext` class, which includes source_system + db_name + project_name.
+For that, we include the `SourceContext` class, which includes database + project.
+The source system is not part of SourceContext — it is hardcoded by each mapper, since a mapper is already specific to a source.
 This class is separate from `SourceMetadata` only to be provided as additional input to the mapper.
 SourceContext is mapper input only; its values are copied into SourceMetadata in the resulting record.
 
@@ -166,7 +168,7 @@ import pyetp.resqml_objects.data_types as resqml_types
 
 
 ow_surface: ow_common.SurfaceGrid = dsis_fetch(...)
-surface_record:  interp.SurfaceGridRecord = surface_ow_to_interpretation(ow_surface, ...)
+surface_record:  interp.SurfaceGridRecord = map_surfacegrid(ow_surface, ...)
 regular_grid_params = resqml_types.RegularGridParameters (shape = (surface_record.ncols, surface_record.nrows), ...)
 ```
 
