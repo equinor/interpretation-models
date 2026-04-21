@@ -24,9 +24,11 @@ As a general rule, InterpretationRecord is a base/abstract model from which ever
 
 It contains information that belongs to any spatial interpretation, such as coordinate reference, domain, z_unit, extent, and also includes specialized (optional) metadata produced by the sources or processing clients.
 
-Concrete datatypes inherit from `InterpretationRecord`, directly or through the two intermediate classes upon which we divide interpretations based on whether they are points over a regular grid (surface grids and horizons) or defined by vector coordinates (x,y,z) for all subcomponents (polygons, point sets, faults) — more details about the distinction and representations of these two types in [interpretations intro](./interpretations.md).
+Concrete datatypes inherit from `InterpretationRecord`, directly or through the two intermediate classes upon which we divide interpretations based on whether they are points over a regular grid (surface grids and horizons) or defined by vector coordinates (x,y,z) for all subcomponents (polygons, point sets) — more details about the distinction and representations of these two types in [interpretations intro](./interpretations.md).
 
-### Example hierarchy
+The example below shows the hierarchy.
+It includes example attributes, but the diagram is not guaranteed to comprehensively include all attributes.
+For an updated description of all clses and attributes, see the code in [interpretations.py](../src/models/interpretation.py)
 
 ```mermaid
 classDiagram
@@ -52,11 +54,11 @@ classDiagram
     class HorizonRecord {
         bin_grid_metadata
     }
-    class PolygonSetRecord
-    class PointSetRecord
-    class FaultRecord {
-        fault_planes
+    class PolygonSetRecord {
+        is_closed
     }
+    class PointSetRecord
+    class FaultRecord
 
     InterpretationRecord <|-- GriddedInterpretationRecord
     GriddedInterpretationRecord <|-- SurfaceGridRecord
@@ -64,7 +66,7 @@ classDiagram
     InterpretationRecord <|-- VectorInterpretationRecord
     VectorInterpretationRecord  <|-- PolygonSetRecord
     VectorInterpretationRecord  <|-- PointSetRecord
-    VectorInterpretationRecord  <|-- FaultRecord
+    InterpretationRecord  <|-- FaultRecord
 
 ``` 
 ### Core Principles
