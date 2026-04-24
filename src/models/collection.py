@@ -12,7 +12,7 @@ class CollectionItem(BaseModel):
 
 
 class Collection(BaseModel):
-    id: str | None = None
+    id: str
     source: SourceMetadata | None = None
     source_ow: OWCollectionMetadata | None = None
     processing: ProcessingMetadata | None = None
