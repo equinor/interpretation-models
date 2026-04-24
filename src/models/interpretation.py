@@ -36,4 +36,16 @@ class VectorInterpretationRecord(InterpretationRecord):
 
 
 class SurfaceGridRecord(GriddedInterpretationRecord):
+    """
+    A surface defined in a regular 2D grid containing values for each of the points in the grid.
+    The grid geometry is defined by the ``geometry`` parameters, which are sufficient to locate each point in space.
+    SurfaceGrids are typically (but not necessarily) originated from a horizon, replacing its seismic bin grid by a
+    locally defined grid (potentially after regridding)
+    The values are stored separately as a flattened 2D array, the format of which is explained in
+    http://github.com/equinor/interpretation-models/docs/bulk_data_models.md
+    The values can represent a structural surface (depth or time) or a property defined on a surface
+    (e.g. attribute, uncertainty, …).
+    In the case the values represent a property, there's optionally included a parent structural surface that the
+    property is defined on.
+    """
     parent_surface_id: str | None = None
