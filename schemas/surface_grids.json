@@ -1,0 +1,258 @@
+{
+  "name": "surface_grids",
+  "description": "\n    A surface defined in a regular 2D grid containing values for each of the points in the grid.\n    The grid geometry is defined by the ``geometry`` parameters, which are sufficient to locate each point in space.\n    SurfaceGrids are typically (but not necessarily) originated from a horizon, replacing its seismic bin grid by a\n    locally defined grid (potentially after regridding)\n    The values are stored separately as a flattened 2D array, the format of which is explained in\n    http://github.com/equinor/interpretation-models/docs/bulk_data_models.md\n    The values can represent a structural surface (depth or time) or a property defined on a surface\n    (e.g. attribute, uncertainty, …).\n    In the case the values represent a property, there's optionally included a parent structural surface that the\n    property is defined on.\n    ",
+  "model": "SurfaceGridRecord",
+  "columns": [
+    {
+      "name": "source_system",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_database",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_project",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_id",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_remark",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_geo_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_geo_type",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_attribute",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_petrel_business_project",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_petrel_data_status",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_petrel_confidence_factor",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "processing_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_file_availability",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_deleted",
+      "type": "boolean",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_delete_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "extent_points",
+      "type": "json",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "crs",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "z_domain",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "z_unit",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_ncol",
+      "type": "integer",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_nrow",
+      "type": "integer",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_xori",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_yori",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_xinc",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_yinc",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_rotation",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "geometry_left_handed",
+      "type": "boolean",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "grid_null_value",
+      "type": "float",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "grid_ntotal",
+      "type": "integer",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "grid_nnan",
+      "type": "integer",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "parent_surface_id",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    }
+  ],
+  "primary_key": [
+    "processing_id"
+  ],
+  "natural_key": [
+    "source_system",
+    "source_database",
+    "source_project",
+    "source_id"
+  ],
+  "foreign_keys": [],
+  "version": "0.1.0"
+}
