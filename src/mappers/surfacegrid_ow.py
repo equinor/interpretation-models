@@ -1,7 +1,7 @@
 import math
 
 from models.metadata import SourceContext
-from models.metadata import SourceMetadata, SourceSystem, OWMetadata, ProcessingMetadata
+from models.metadata import SourceMetadata, SourceSystem, OWSurfaceGridMetadata, ProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
 from mappers.metadata_ow import convert_date_to_utc
@@ -45,12 +45,12 @@ def map_surfacegrid(
         update_date_utc=convert_date_to_utc(
             ow_surface.update_date, source_context.timezone
         ),
+    )
 
-        ow=OWMetadata(
-            geo_name=ow_surface.geo_name,
-            geo_type=ow_surface.geo_type,
-            attribute=ow_surface.attribute,
-        ),
+    source_ow_metadata = OWSurfaceGridMetadata(
+        geo_name=ow_surface.geo_name,
+        geo_type=ow_surface.geo_type,
+        attribute=ow_surface.attribute,
     )
 
     geometry = GridGeometry(
@@ -68,6 +68,7 @@ def map_surfacegrid(
 
     return SurfaceGridRecord(
         source=source_metadata,
+        source_ow=source_ow_metadata,
         processing=processing_metadata,
         geometry=geometry,
         crs=ow_surface.crs or source_context.crs,

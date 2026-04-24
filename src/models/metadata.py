@@ -8,34 +8,6 @@ class SourceSystem(str, Enum):
     PETREL = "Petrel Studio"
 
 
-class OWMetadata(BaseModel):
-    geo_name: str | None = None
-    geo_type: str | None = None
-    attribute: str | None = None
-
-
-class PetrelMetadata(BaseModel):
-    business_project: str | None = None
-    data_status: str | None = None
-    confidence_factor: str | None = None
-
-
-class SourceMetadata(BaseModel):
-    system: SourceSystem | None = None
-    database: str | None = None
-    project: str | None = None
-    id: str | None = None
-    name: str | None = None
-    remark: str | None = None
-    create_user: str | None = None
-    update_user: str | None = None
-    create_date: datetime | None = None
-    create_date_utc: datetime | None = None
-    update_date: datetime | None = None
-    update_date_utc: datetime | None = None
-    ow: OWMetadata | None = None
-    petrel: PetrelMetadata | None = None
-
 
 class ProcessingMetadata(BaseModel):
     """
@@ -62,3 +34,36 @@ class SourceContext(BaseModel):
     project: str
     timezone: str | None = None
     crs: str | None = None
+
+
+class SourceMetadata(BaseModel):
+    system: SourceSystem | None = None
+    database: str | None = None
+    project: str | None = None
+    id: str | None = None
+    name: str | None = None
+    remark: str | None = None
+    create_user: str | None = None
+    update_user: str | None = None
+    create_date: datetime | None = None
+    create_date_utc: datetime | None = None
+    update_date: datetime | None = None
+    update_date_utc: datetime | None = None
+
+
+class OWMetadata(BaseModel):
+    """Base class for OpenWorks source metadata. Subclassed for each interpretation type."""
+    pass
+
+
+class OWSurfaceGridMetadata(OWMetadata):
+    """OpenWorks metadata specific to surface grids."""
+    geo_name: str | None = None
+    geo_type: str | None = None
+    attribute: str | None = None
+
+
+class PetrelMetadata(BaseModel):
+    business_project: str | None = None
+    data_status: str | None = None
+    confidence_factor: str | None = None
