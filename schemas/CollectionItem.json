@@ -1,0 +1,189 @@
+{
+  "name": "CollectionItem",
+  "description": "",
+  "model": "CollectionItem",
+  "columns": [
+    {
+      "name": "collection_id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "datatype",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "source_system",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_database",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_project",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_id",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_remark",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "processing_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_file_availability",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_file_error_message",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_file_path",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_deleted",
+      "type": "boolean",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_delete_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_data_type",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_data_object_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_data_object_id",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_native_uid",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    }
+  ],
+  "primary_key": [
+    "collection_id",
+    "object_id"
+  ],
+  "natural_key": [
+    "collection_id",
+    "object_id"
+  ],
+  "foreign_keys": [
+    {
+      "columns": [
+        "collection_id"
+      ],
+      "references_table": "Collection",
+      "references_columns": [
+        "processing_id"
+      ]
+    }
+  ],
+  "version": "0.1.0"
+}

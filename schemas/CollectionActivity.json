@@ -1,0 +1,79 @@
+{
+  "name": "CollectionActivity",
+  "description": "\n    Activity log tracking changes to collections and their contained objects.\n    Each row represents a single event either directly to a collection (insert or remove obbjects) \n    or to one of its objects (create, update, delete)\n    Used for aggregation queries, for example:\n    - determine when a collection was last updated (potentialy filtering only on a specific datatype of interest)\n    - which collections had updates on surface grids in the last hour\n    ",
+  "model": null,
+  "columns": [
+    {
+      "name": "date",
+      "type": "datetime",
+      "nullable": false,
+      "description": "Timestamp of the activity event"
+    },
+    {
+      "name": "update_type",
+      "type": "string",
+      "nullable": false,
+      "description": "Type of update (e.g. ObjectCreate, ObjectUpdate, ObjectDelete, ISetInsert, ISetDelete)"
+    },
+    {
+      "name": "datatype",
+      "type": "string",
+      "nullable": false,
+      "description": "Type of the affected data object (e.g. SurfaceGrid)"
+    },
+    {
+      "name": "source_system",
+      "type": "string",
+      "nullable": false,
+      "description": "Source system identifier"
+    },
+    {
+      "name": "source_database",
+      "type": "string",
+      "nullable": false,
+      "description": "Source database identifier"
+    },
+    {
+      "name": "source_project",
+      "type": "string",
+      "nullable": false,
+      "description": "Source project identifier"
+    },
+    {
+      "name": "iset_id",
+      "type": "string",
+      "nullable": false,
+      "description": "Interpretation set identifier"
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "nullable": true,
+      "description": "Identifier of the affected object within the ISet (null for ISet-level events)"
+    }
+  ],
+  "primary_key": [
+    "date",
+    "update_type",
+    "iset_id",
+    "object_id"
+  ],
+  "natural_key": [
+    "date",
+    "update_type",
+    "iset_id",
+    "object_id"
+  ],
+  "foreign_keys": [
+    {
+      "columns": [
+        "iset_id"
+      ],
+      "references_table": "Collection",
+      "references_columns": [
+        "processing_id"
+      ]
+    }
+  ],
+  "version": "0.1.0"
+}
