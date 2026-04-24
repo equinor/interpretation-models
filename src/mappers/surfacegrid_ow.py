@@ -2,17 +2,17 @@ import math
 
 from models.metadata import SourceContext
 from models.enums import SourceSystem
-from models.metadata import SourceMetadata, OWSurfaceGridMetadata, ProcessingMetadata
+from models.metadata import SourceMetadata, OWSurfaceGridMetadata, InterpretationProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
-from mappers.metadata_ow import convert_date_to_utc
+from mappers.metadata_ow import convert_date_to_utc, id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
 def map_surfacegrid(
     ow_surface: SurfaceGrid | SurfaceGridProperties,
     source_context: SourceContext,
-    processing_metadata: ProcessingMetadata | None = None,
+    processing_metadata: InterpretationProcessingMetadata | None = None,
 ) -> SurfaceGridRecord:
     """Map an OW SurfaceGrid to a SurfaceGridRecord.
 
@@ -41,11 +41,11 @@ def map_surfacegrid(
         create_date=ow_surface.create_date,
         create_date_utc=convert_date_to_utc(
             ow_surface.create_date, source_context.timezone
-        ),
+        ) if ow_surface.create_date is not None else None,
         update_date=ow_surface.update_date,
         update_date_utc=convert_date_to_utc(
             ow_surface.update_date, source_context.timezone
-        ),
+        ) if ow_surface.update_date is not None else None,
     )
 
     source_ow_metadata = OWSurfaceGridMetadata(
@@ -68,6 +68,7 @@ def map_surfacegrid(
     )
 
     return SurfaceGridRecord(
+        id=id_generate(source_context, ow_surface.native_uid),
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata,

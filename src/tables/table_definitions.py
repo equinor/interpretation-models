@@ -9,7 +9,8 @@ not on the Pydantic model objects themselves.
 """
 
 from models.interpretation import SurfaceGridRecord
-from tables.tablespec import ModelTableDef, TableSpec
+from models.collection import Collection, CollectionItem
+from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
 
 # ---------------------------------------------------------------------------
 # Model tables

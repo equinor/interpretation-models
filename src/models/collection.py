@@ -7,11 +7,12 @@ class CollectionItem(BaseModel):
     object_id: str
     datatype: str
     source: SourceMetadata | None = None
-    processing: ProcessingMetadata | None = None
     source_ow: OWCollectionItemMetadata | None = None
-    
+    processing: ProcessingMetadata | None = None
+
 
 class Collection(BaseModel):
+    id: str | None = None
     source: SourceMetadata | None = None
-    processing: ProcessingMetadata | None = None
     source_ow: OWCollectionMetadata | None = None
+    processing: ProcessingMetadata | None = None

@@ -4,18 +4,20 @@ from models.enums import SourceSystem
 
 
 class ProcessingMetadata(BaseModel):
+    create_date: datetime | None = None
+    update_date: datetime | None = None
+
+
+class InterpretationProcessingMetadata(ProcessingMetadata):
     """
     Metadata related to the processing of the data, such as timestamps, UUIDs, etc.
     This is included only so these attributes can be included in the table schemas derived from the interpretation models,
     Callers can send the information to include directly in the output object without transformation.
     It is optional - if not storing intermediate processing information, this can be skipped.
     """
-    id: str
-    create_date: datetime | None = None
-    update_date: datetime | None = None
     file_availability: str | None = None
-    deleted: bool | None = None
-    delete_date: datetime | None = None
+    file_error_message: str | None = None
+    file_path: str | None = None
 
 
 class SourceContext(BaseModel):
