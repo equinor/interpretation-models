@@ -1,7 +1,8 @@
 import math
 
 from models.metadata import SourceContext
-from models.metadata import SourceMetadata, SourceSystem, OWSurfaceGridMetadata, ProcessingMetadata
+from models.enums import SourceSystem
+from models.metadata import SourceMetadata, OWSurfaceGridMetadata, ProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
 from mappers.metadata_ow import convert_date_to_utc

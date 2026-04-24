@@ -1,12 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
-from enum import Enum
-
-
-class SourceSystem(str, Enum):
-    OPENWORKS = "OpenWorks R5000"
-    PETREL = "Petrel Studio"
-
+from models.enums import SourceSystem
 
 
 class ProcessingMetadata(BaseModel):
