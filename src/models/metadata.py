@@ -47,7 +47,7 @@ class ProcessingMetadata(BaseModel):
     id: str
     create_date: datetime | None = None
     update_date: datetime | None = None
-    file_availability: str | None = None
+    file_available: bool | None = None
     deleted: bool | None = None
     delete_date: datetime | None = None
 

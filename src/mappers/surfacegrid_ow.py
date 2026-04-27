@@ -4,7 +4,7 @@ from models.metadata import SourceContext
 from models.metadata import SourceMetadata, SourceSystem, OWMetadata, ProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
-from mappers.metadata_ow import convert_date_to_utc
+from mappers.metadata_ow import convert_date_to_utc, id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
@@ -26,6 +26,7 @@ def map_surfacegrid(
     if ow_surface.update_date is None:
         ow_surface.update_date = ow_surface.create_date
         ow_surface.update_user_id = ow_surface.create_user_id
+
     source_metadata = SourceMetadata(
         system=SourceSystem.OPENWORKS,
         database=source_context.database,
@@ -40,11 +41,11 @@ def map_surfacegrid(
         create_date=ow_surface.create_date,
         create_date_utc=convert_date_to_utc(
             ow_surface.create_date, source_context.timezone
-        ),
+        ) if ow_surface.create_date is not None else None,
         update_date=ow_surface.update_date,
         update_date_utc=convert_date_to_utc(
             ow_surface.update_date, source_context.timezone
-        ),
+        ) if ow_surface.update_date is not None else None,
 
         ow=OWMetadata(
             geo_name=ow_surface.geo_name,
@@ -66,7 +67,11 @@ def map_surfacegrid(
         left_handed=True,
     )
 
+    # id is nullable, so we try to iterate through other unique attributes in case it is null
+    native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
+    parent_id = ow_surface.parent_surface_grid_id if isinstance(ow_surface, SurfaceGridProperties) else None
     return SurfaceGridRecord(
+        id=id_generate(source_context, native_id),
         source=source_metadata,
         processing=processing_metadata,
         geometry=geometry,
@@ -74,4 +79,5 @@ def map_surfacegrid(
         z_domain=ow_surface.data_domain,
         z_unit=ow_surface.z_unit,
         extent=None,  # TODO: calculate from grid geometry
+        parent_surface_id=parent_id
     )

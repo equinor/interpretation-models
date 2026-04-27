@@ -4,6 +4,7 @@ from models.metadata import SourceMetadata, ProcessingMetadata
 
 
 class InterpretationRecord(BaseModel):
+    id: str
     source: SourceMetadata | None = None
     processing: ProcessingMetadata | None = None
     extent: Extent | None = None
