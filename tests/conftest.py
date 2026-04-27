@@ -5,7 +5,7 @@ import pytest
 from dsis_model_sdk.models.common import SurfaceGrid
 from mappers.surface_helpers import normalize_surfacegrid_payload
 
-from models.metadata import ProcessingMetadata
+from models.metadata import InterpretationProcessingMetadata
 from models.metadata import SourceContext
 
 
@@ -28,8 +28,8 @@ def surfacegrid_obj(surfacegrid_payload_normalized: dict) -> SurfaceGrid:
 
 
 @pytest.fixture
-def processing_metadata() -> ProcessingMetadata:
-    return ProcessingMetadata(
+def processing_metadata() -> InterpretationProcessingMetadata:
+    return InterpretationProcessingMetadata(
         id="11111111-1111-1111-1111-111111111111",
     )
 
