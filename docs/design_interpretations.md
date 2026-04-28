@@ -113,14 +113,16 @@ Examples:
 - names, aliases, or remarks
 - timestamps and users for creation/update
 
-Metadata that exists only on specific sources (e.g. geo_name for OpenWorks or confidence_factor for Petrel) is included as attributes in the SourceMetadata, with composable classes like OpenWorksMetadata and PetrelMetadata.
-This allows the model to remain consistent across systems while still preserving source-specific detail.
+Metadata that exists only on specific sources (e.g. confidence_factor for Petrel) is included with composable classes like OpenWorksMetadata and PetrelMetadata.
+Furthermore, metadata that exists for a specific class of a specicifc source, such as geo_name for OpenWorks SurfaceGrid and PointSet, inherits from the top OWMetadata and replaces its attributes.
 
-The reason to do that instead of creating classes that inherit from SourceMetadata and add specific attributes is to allow the schema for the record to be the same, regardless of the source for the data.
+The reason for the OpenWorksMetadata and PetrelMetadata not to inherit from SourceMetadata directly is to allow the schema for the record to be the same, regardless of the source for the data.
 When (if) exporting the interpretation model objects into tables, they will generate rows following a schema that includes metadata from all sources, but only a few of them are expected to be filled depending on which source it comes from.
 
+This allows the model to remain consistent across systems while still preserving source-specific detail.
+
 As this model evolves, some of this metadata can eventually be modelled into other attributes common to sources.
-As an example, the geo_name is used in OpenWorks, and can be mapped to strat columns in the interpretation model.
+As an example, the geo_name is used in OpenWorks, and can be mapped to stratigraphy information in the interpretation model.
 The challenge for that is that this type of attribute usage is not enforced by the sources and may be used inconsistently and with different purposes across assets.
 
 ### Source Context

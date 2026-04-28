@@ -17,8 +17,8 @@ from tables.tablespec import ModelTableDef, TableSpec
 
 SURFACE_GRID_TABLE = ModelTableDef(
     model=SurfaceGridRecord,
-    name="surface_grids",
-    primary_key=["processing_id"],
+    name="SurfaceGrid",
+    primary_key=["id"],
     natural_key=["source_system", "source_database", "source_project", "source_id"],
 )
 
