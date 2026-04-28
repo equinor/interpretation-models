@@ -1,0 +1,45 @@
+{
+  "name": "SurfaceGrid_CollectionItem",
+  "description": "\n    Bridge table for the many-to-many relationship between SurfaceGrid and CollectionItem.\n    CollectionItem itself references objects of different types (SurfaceGrid, Horizon, Fault, ...)\n    so a direct foreign key from CollectionItem to each type table is not possible.\n    This bridge table provides a proper FK-backed link for SurfaceGrid specifically.\n    ",
+  "model": null,
+  "columns": [
+    {
+      "name": "collection_item_id",
+      "type": "string",
+      "nullable": false,
+      "description": "References the object_id in CollectionItem"
+    },
+    {
+      "name": "surface_grid_id",
+      "type": "string",
+      "nullable": false,
+      "description": "References the id in SurfaceGrid"
+    }
+  ],
+  "primary_key": [
+    "collection_item_id",
+    "surface_grid_id"
+  ],
+  "natural_key": [],
+  "foreign_keys": [
+    {
+      "columns": [
+        "collection_item_id"
+      ],
+      "references_table": "CollectionItem",
+      "references_columns": [
+        "object_id"
+      ]
+    },
+    {
+      "columns": [
+        "surface_grid_id"
+      ],
+      "references_table": "SurfaceGrid",
+      "references_columns": [
+        "id"
+      ]
+    }
+  ],
+  "version": "0.1.0"
+}

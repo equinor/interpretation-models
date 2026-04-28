@@ -1,8 +1,14 @@
 {
-  "name": "surface_grids",
-  "description": "\n    A surface defined in a regular 2D grid containing values for each of the points in the grid.\n    The grid geometry is defined by the ``geometry`` parameters, which are sufficient to locate each point in space.\n    SurfaceGrids are typically (but not necessarily) originated from a horizon, replacing its seismic bin grid by a\n    locally defined grid (potentially after regridding)\n    The values are stored separately as a flattened 2D array, the format of which is explained in\n    http://github.com/equinor/interpretation-models/docs/bulk_data_models.md\n    The values can represent a structural surface (depth or time) or a property defined on a surface\n    (e.g. attribute, uncertainty, …).\n    In the case the values represent a property, there's optionally included a parent structural surface that the\n    property is defined on.\n    ",
+  "name": "SurfaceGrid",
+  "description": "\nA surface defined in a regular 2D grid containing values for each of the points in the grid.\nThe grid geometry is defined by the ``geometry`` parameters, which are sufficient to locate each point in space.\nSurfaceGrids are typically (but not necessarily) originated from a horizon, replacing its seismic bin grid by a\nlocally defined grid (potentially after regridding)\nThe values are stored separately as a flattened 2D array, the format of which is explained in\nhttp://github.com/equinor/interpretation-models/docs/bulk_data_models.md\nThe values can represent a structural surface (depth or time) or a property defined on a surface\n(e.g. attribute, uncertainty, …).\nIn the case the values represent a property, there's optionally included a parent structural surface that the\nproperty is defined on.\n",
   "model": "SurfaceGridRecord",
   "columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
     {
       "name": "source_system",
       "type": "string",
@@ -112,12 +118,6 @@
       "description": ""
     },
     {
-      "name": "processing_id",
-      "type": "string",
-      "nullable": false,
-      "description": ""
-    },
-    {
       "name": "processing_create_date",
       "type": "datetime",
       "nullable": true,
@@ -130,20 +130,20 @@
       "description": ""
     },
     {
-      "name": "processing_file_availability",
-      "type": "string",
-      "nullable": true,
-      "description": ""
-    },
-    {
-      "name": "processing_deleted",
+      "name": "processing_file_available",
       "type": "boolean",
       "nullable": true,
       "description": ""
     },
     {
-      "name": "processing_delete_date",
-      "type": "datetime",
+      "name": "processing_file_error_message",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_file_path",
+      "type": "string",
       "nullable": true,
       "description": ""
     },
@@ -245,7 +245,7 @@
     }
   ],
   "primary_key": [
-    "processing_id"
+    "id"
   ],
   "natural_key": [
     "source_system",

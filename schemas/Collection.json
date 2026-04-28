@@ -1,0 +1,114 @@
+{
+  "name": "Collection",
+  "description": "",
+  "model": "Collection",
+  "columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
+      "name": "source_system",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_database",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_project",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_id",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_remark",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_user",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_create_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_update_date_utc",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "source_ow_field_prospect_name",
+      "type": "string",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_create_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    },
+    {
+      "name": "processing_update_date",
+      "type": "datetime",
+      "nullable": true,
+      "description": ""
+    }
+  ],
+  "primary_key": [
+    "id"
+  ],
+  "natural_key": [
+    "source_system",
+    "source_database",
+    "source_project",
+    "source_id"
+  ],
+  "foreign_keys": [],
+  "version": "0.1.0"
+}
