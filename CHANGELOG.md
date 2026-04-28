@@ -5,10 +5,8 @@
 
 ### Features
 
-* generation of table schemas ([4f0831d](https://github.com/equinor/interpretation-models/commit/4f0831dcc201af473eb542e440322344188f74b6))
-* Implement id generation and timezone conversion ([d4708f6](https://github.com/equinor/interpretation-models/commit/d4708f6d47267f587562318a9105ba4d9a77601b))
-* Support for Collection and CollectionItems ([98cfcdf](https://github.com/equinor/interpretation-models/commit/98cfcdf719894a00f667889a70c73f5cb026a672))
-* Support for Collection and CollectionItems ([1d546bf](https://github.com/equinor/interpretation-models/commit/1d546bf70c78abc9f50eda9ae6417fffe6a37dad))
+* id generation and timezone conversion ([d4708f6](https://github.com/equinor/interpretation-models/commit/d4708f6d47267f587562318a9105ba4d9a77601b))
+* support for Collection and CollectionItems models and mappers ([1d546bf](https://github.com/equinor/interpretation-models/commit/1d546bf70c78abc9f50eda9ae6417fffe6a37dad))
 * support for generating table schemas based on the models ([28b68d5](https://github.com/equinor/interpretation-models/commit/28b68d580772e2c7edbde50dacb82a4e5c5120b7))
 
 
