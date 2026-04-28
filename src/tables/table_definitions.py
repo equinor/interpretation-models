@@ -9,7 +9,8 @@ not on the Pydantic model objects themselves.
 """
 
 from models.interpretation import SurfaceGridRecord
-from tables.tablespec import ModelTableDef, TableSpec
+from models.collection import Collection, CollectionItem
+from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
 
 # ---------------------------------------------------------------------------
 # Model tables
@@ -22,9 +23,31 @@ SURFACE_GRID_TABLE = ModelTableDef(
     natural_key=["source_system", "source_database", "source_project", "source_id"],
 )
 
+COLLECTION_TABLE = ModelTableDef(
+    model=Collection,
+    name="Collection",
+    primary_key=["id"],
+    natural_key=["source_system", "source_database", "source_project", "source_id"],
+)
+
+COLLECTION_ITEM_TABLE = ModelTableDef(
+    model=CollectionItem,
+    name="CollectionItem",
+    primary_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
+    natural_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
+    foreign_keys=[
+        ForeignKeySpec(
+            columns=["collection_id"],
+            references_table="Collection",
+            references_columns=["id"],
+        )
+    ],
+)
 
 MODEL_TABLES: list[ModelTableDef] = [
     SURFACE_GRID_TABLE,
+    COLLECTION_TABLE,
+    COLLECTION_ITEM_TABLE,
 ]
 
 # ---------------------------------------------------------------------------

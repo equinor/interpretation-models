@@ -59,6 +59,17 @@ class OWSurfaceGridMetadata(OWMetadata):
     attribute: str | None = None
 
 
+class OWCollectionMetadata(OWMetadata):
+    field_prospect_name: str | None = None
+
+
+class OWCollectionItemMetadata(OWMetadata):
+    data_type: str | None = None
+    data_object_name: str | None = None
+    data_object_id: str | None = None
+    native_uid: str | None = None
+
+
 class PetrelMetadata(BaseModel):
     business_project: str | None = None
     data_status: str | None = None
