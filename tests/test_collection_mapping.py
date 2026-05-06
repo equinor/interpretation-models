@@ -161,6 +161,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:100:SurfaceGrid:1830",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:1830",
             "datatype": "SurfaceGrid",
@@ -201,6 +202,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:100:SurfaceGrid:2636",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:2636",
             "datatype": "SurfaceGrid",
@@ -241,6 +243,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:100:SurfaceGrid:",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:",
             "datatype": "SurfaceGrid",

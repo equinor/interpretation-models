@@ -33,8 +33,8 @@ COLLECTION_TABLE = ModelTableDef(
 COLLECTION_ITEM_TABLE = ModelTableDef(
     model=CollectionItem,
     name="CollectionItem",
-    primary_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
-    natural_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
+    primary_key=["id"],
+    natural_key=["collection_id", "object_id", "datatype"],
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_id"],
