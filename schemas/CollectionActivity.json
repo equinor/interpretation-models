@@ -1,6 +1,6 @@
 {
   "name": "CollectionActivity",
-  "description": "\n    Activity log tracking changes to collections and their contained objects.\n    Each row represents a single event either directly to a collection (insert or remove obbjects) \n    or to one of its objects (create, update, delete)\n    Used for aggregation queries, for example:\n    - determine when a collection was last updated (potentialy filtering only on a specific datatype of interest)\n    - which collections had updates on surface grids in the last hour\n    ",
+  "description": "\n    Activity log tracking changes to collections and their contained objects.\n    Each row represents a single event either directly to a collection (insert or remove objects)\n    or to one of its objects (create, update, delete)\n    Used for aggregation queries, for example:\n    - determine when a collection was last updated (potentialy filtering only on a specific datatype of interest)\n    - which collections had updates on surface grids in the last hour\n    ",
   "model": null,
   "columns": [
     {
@@ -67,11 +67,13 @@
   "foreign_keys": [
     {
       "columns": [
-        "iset_id"
+        "iset_id",
+        "object_id"
       ],
-      "references_table": "Collection",
+      "references_table": "CollectionItem",
       "references_columns": [
-        "id"
+        "iset_id",
+        "object_id"
       ]
     }
   ],

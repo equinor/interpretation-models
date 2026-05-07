@@ -87,7 +87,7 @@ erDiagram
         datetime date PK
         string update_type PK
         string iset_id PK, FK
-        string object_id PK
+        string object_id PK, FK
         string datatype
         string source_system
         string source_database
@@ -100,7 +100,7 @@ erDiagram
     }
 
     Collection ||--o{ CollectionItem : "contains"
-    Collection ||--o{ CollectionActivity : "tracks"
+    CollectionItem ||--o{ CollectionActivity : "tracks"
     CollectionItem ||--o{ SurfaceGrid_CollectionItem : "links"
     SurfaceGrid ||--o{ SurfaceGrid_CollectionItem : "links"
 ```

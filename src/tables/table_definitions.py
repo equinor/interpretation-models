@@ -33,7 +33,7 @@ COLLECTION_TABLE = ModelTableDef(
 COLLECTION_ITEM_TABLE = ModelTableDef(
     model=CollectionItem,
     name="CollectionItem",
-    primary_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
+    primary_key=["collection_id", "object_id"],
     natural_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
     foreign_keys=[
         ForeignKeySpec(
@@ -58,7 +58,7 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
     name="CollectionActivity",
     description="""
     Activity log tracking changes to collections and their contained objects.
-    Each row represents a single event either directly to a collection (insert or remove obbjects) 
+    Each row represents a single event either directly to a collection (insert or remove objects)
     or to one of its objects (create, update, delete)
     Used for aggregation queries, for example:
     - determine when a collection was last updated (potentialy filtering only on a specific datatype of interest)
@@ -78,9 +78,9 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
     natural_key=["date", "update_type", "iset_id", "object_id"],
     foreign_keys=[
         ForeignKeySpec(
-            columns=["iset_id"],
-            references_table="Collection",
-            references_columns=["id"],
+            columns=["iset_id", "object_id"],
+            references_table="CollectionItem",
+            references_columns=["iset_id", "object_id"],
         ),
     ],
 )

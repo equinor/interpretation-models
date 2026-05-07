@@ -131,9 +131,6 @@
     }
   ],
   "primary_key": [
-    "source_system",
-    "source_database",
-    "source_project",
     "collection_id",
     "object_id"
   ],
