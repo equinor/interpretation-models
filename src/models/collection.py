@@ -4,6 +4,7 @@ from models.metadata import SourceMetadata, ProcessingMetadata, OWCollectionMeta
 
 
 class CollectionItem(BaseModel):
+    id:str
     collection_id: str
     object_id: str
     datatype: InterpretationDataType
