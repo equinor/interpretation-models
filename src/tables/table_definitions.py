@@ -84,12 +84,12 @@ SURFACEGRID_COLLECTIONITEM_TABLE = TableSpec(
     name="SurfaceGrid_CollectionItem",
     description="""
     Bridge table for the many-to-many relationship between SurfaceGrid and CollectionItem.
-    CollectionItem itself references objects of different types (SurfaceGrid, Horizon, Fault, ...)
-    so a direct foreign key from CollectionItem to each type table is not possible.
-    This bridge table provides a proper FK-backed link for SurfaceGrid specifically.
+    CollectionItem itself is polymorphic, so its object_id references different tables (SurfaceGrid, Horizon, Fault, ...).
+    Therefore, a direct foreign key from CollectionItem to each type table is not possible.
+    This bridge table provides a proper link for SurfaceGrid specifically.
     """,
     columns=[
-        ColumnSpec(name="collection_item_id", type="string", nullable=False, description="References the object_id in CollectionItem"),
+        ColumnSpec(name="collection_item_id", type="string", nullable=False, description="References the (surrogate) id in CollectionItem"),
         ColumnSpec(name="surface_grid_id", type="string", nullable=False, description="References the id in SurfaceGrid"),
     ],
     primary_key=["collection_item_id", "surface_grid_id"],
