@@ -4,13 +4,13 @@
   "model": null,
   "columns": [
     {
-      "name": "date",
+      "name": "event_date",
       "type": "datetime",
       "nullable": false,
       "description": "Timestamp of the activity event"
     },
     {
-      "name": "update_type",
+      "name": "event_type",
       "type": "string",
       "nullable": false,
       "description": "Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"
@@ -23,13 +23,13 @@
     }
   ],
   "primary_key": [
-    "date",
-    "update_type",
+    "event_date",
+    "event_type",
     "collection_item_id"
   ],
   "natural_key": [
-    "date",
-    "update_type",
+    "event_date",
+    "event_type",
     "collection_item_id"
   ],
   "foreign_keys": [

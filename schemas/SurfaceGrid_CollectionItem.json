@@ -28,7 +28,7 @@
       ],
       "references_table": "CollectionItem",
       "references_columns": [
-        "object_id"
+        "id"
       ]
     },
     {

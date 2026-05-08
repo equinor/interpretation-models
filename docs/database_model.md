@@ -88,8 +88,8 @@ erDiagram
     }
 
     CollectionActivity {
-        datetime date PK
-        string update_type PK
+        datetime event_date PK
+        string event_type PK
         string collection_item_id PK, FK
     }
 
@@ -100,6 +100,6 @@ erDiagram
 
     Collection ||--o{ CollectionItem : "contains"
     CollectionItem ||--o{ CollectionActivity : "tracks"
-    CollectionItem ||--o{ SurfaceGrid_CollectionItem : "links"
-    SurfaceGrid ||--o{ SurfaceGrid_CollectionItem : "links"
+    CollectionItem ||--o| SurfaceGrid_CollectionItem : "bridge"
+    SurfaceGrid ||--o{ SurfaceGrid_CollectionItem : "references"
 ```

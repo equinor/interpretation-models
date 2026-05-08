@@ -65,12 +65,12 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
     - which collections had updates on surface grids in the last hour
     """,
     columns=[
-        ColumnSpec(name="date", type="datetime", nullable=False, description="Timestamp of the activity event"),
-        ColumnSpec(name="update_type", type="string", nullable=False, description="Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"),
+        ColumnSpec(name="event_date", type="datetime", nullable=False, description="Timestamp of the activity event"),
+        ColumnSpec(name="event_type", type="string", nullable=False, description="Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"),
         ColumnSpec(name="collection_item_id", type="string", nullable=True, description="Identifier of the affected collection item (combination of collection_id, object_id, and datatype)"),
     ],
-    primary_key=["date", "update_type", "collection_item_id"],
-    natural_key=["date", "update_type", "collection_item_id"],
+    primary_key=["event_date", "event_type", "collection_item_id"],
+    natural_key=["event_date", "event_type", "collection_item_id"],
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_item_id"],
@@ -97,7 +97,7 @@ SURFACEGRID_COLLECTIONITEM_TABLE = TableSpec(
         ForeignKeySpec(
             columns=["collection_item_id"],
             references_table="CollectionItem",
-            references_columns=["object_id"],
+            references_columns=["id"],
         ),
         ForeignKeySpec(
             columns=["surface_grid_id"],
