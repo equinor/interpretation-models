@@ -158,13 +158,12 @@ def map_collection_item(
 
     ow_datatype: OWDataType = OWDataType(ow_data_object.data_type) if ow_data_object.data_type in OWDataType._value2member_map_ else OWDataType.OTHERS
     resolved_datatype: InterpretationDataType = map_dataobject_datatype(ow_datatype)
-
     resolved_id = resolve_id(ow_data_object)
-    surrogate_id = id_generate(source_context, f"Collection:{ow_data_object.interpretation_set_id}:{resolved_datatype.value}:{resolved_id}")
+    collection_id = ow_data_object.interpretation_set_id
 
     return CollectionItem(
-        id = surrogate_id,
-        collection_id=id_generate(source_context, ow_data_object.interpretation_set_id),
+        id = id_generate(source_context, f"Collection:{collection_id}:{resolved_datatype.value}:{resolved_id}"),
+        collection_id=id_generate(source_context, collection_id),
         object_id=id_generate(source_context, resolved_id),
         datatype=resolved_datatype,
         source=source_metadata,
