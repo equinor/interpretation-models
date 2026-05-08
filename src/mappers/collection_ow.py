@@ -149,7 +149,6 @@ def map_collection_item(
         ) if ow_data_object.update_date is not None else None,
     )
 
-    ow_datatype = OWDataType(ow_data_object.data_type) if ow_data_object.data_type in OWDataType._value2member_map_ else OWDataType.OTHERS
     source_ow_metadata = OWCollectionItemMetadata(
         data_type=ow_data_object.data_type,
         data_object_name=ow_data_object.data_object_name,
@@ -157,12 +156,16 @@ def map_collection_item(
         native_uid=ow_data_object.native_uid,
     )
 
+    ow_datatype: OWDataType = OWDataType(ow_data_object.data_type) if ow_data_object.data_type in OWDataType._value2member_map_ else OWDataType.OTHERS
+    resolved_datatype: InterpretationDataType = map_dataobject_datatype(ow_datatype)
     resolved_id = resolve_id(ow_data_object)
+    collection_id = ow_data_object.interpretation_set_id
 
     return CollectionItem(
-        collection_id=id_generate(source_context, ow_data_object.interpretation_set_id),
+        id = id_generate(source_context, f"Collection:{collection_id}:{resolved_datatype.value}:{resolved_id}"),
+        collection_id=id_generate(source_context, collection_id),
         object_id=id_generate(source_context, resolved_id),
-        datatype=map_dataobject_datatype(ow_datatype),
+        datatype=resolved_datatype,
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata,

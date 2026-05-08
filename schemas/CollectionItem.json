@@ -4,6 +4,12 @@
   "model": "CollectionItem",
   "columns": [
     {
+      "name": "id",
+      "type": "string",
+      "nullable": false,
+      "description": ""
+    },
+    {
       "name": "collection_id",
       "type": "string",
       "nullable": false,
@@ -131,15 +137,12 @@
     }
   ],
   "primary_key": [
-    "collection_id",
-    "object_id"
+    "id"
   ],
   "natural_key": [
-    "source_system",
-    "source_database",
-    "source_project",
     "collection_id",
-    "object_id"
+    "object_id",
+    "datatype"
   ],
   "foreign_keys": [
     {

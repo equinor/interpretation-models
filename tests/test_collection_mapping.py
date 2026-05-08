@@ -44,7 +44,7 @@ def ow_interpretation_set() -> InterpretationSet:
 
 @pytest.fixture
 def ow_item_map2d() -> ISetDataObject:
-    """Map2D item — gridId extracted from native_uid."""
+    """Map2D item — gridId should be 1830 extracted from native_uid (not 5001 which is the container id)"""
     return ISetDataObject(
         interpretation_set_id="100",
         iset_folder_id=201,
@@ -161,6 +161,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:Collection:100:SurfaceGrid:1830",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:1830",
             "datatype": "SurfaceGrid",
@@ -201,6 +202,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:Collection:100:SurfaceGrid:2636",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:2636",
             "datatype": "SurfaceGrid",
@@ -241,6 +243,7 @@ class TestMapCollectionItemContract:
         flat = flatten_record(ci)
 
         expected = {
+            "id": "BG4FROST:VOLVE_PUBLIC:Collection:100:SurfaceGrid:",
             "collection_id": "BG4FROST:VOLVE_PUBLIC:100",
             "object_id": "BG4FROST:VOLVE_PUBLIC:",
             "datatype": "SurfaceGrid",

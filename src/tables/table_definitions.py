@@ -33,8 +33,8 @@ COLLECTION_TABLE = ModelTableDef(
 COLLECTION_ITEM_TABLE = ModelTableDef(
     model=CollectionItem,
     name="CollectionItem",
-    primary_key=["collection_id", "object_id"],
-    natural_key=["source_system", "source_database", "source_project", "collection_id", "object_id"],
+    primary_key=["id"],
+    natural_key=["collection_id", "object_id", "datatype"],
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_id"],
@@ -66,21 +66,22 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
     """,
     columns=[
         ColumnSpec(name="date", type="datetime", nullable=False, description="Timestamp of the activity event"),
-        ColumnSpec(name="update_type", type="string", nullable=False, description="Type of update (e.g. ObjectCreate, ObjectUpdate, ObjectDelete, ISetInsert, ISetDelete)"),
-        ColumnSpec(name="datatype", type="string", nullable=False, description="Type of the affected data object (e.g. SurfaceGrid)"),
+        ColumnSpec(name="update_type", type="string", nullable=False, description="Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"),
+        ColumnSpec(name="collection_item_id", type="string", nullable=True, description="Identifier of the affected collection item (combination of collection_id, object_id, and datatype)"),
         ColumnSpec(name="source_system", type="string", nullable=False, description="Source system identifier"),
         ColumnSpec(name="source_database", type="string", nullable=False, description="Source database identifier"),
         ColumnSpec(name="source_project", type="string", nullable=False, description="Source project identifier"),
-        ColumnSpec(name="iset_id", type="string", nullable=False, description="Interpretation set identifier"),
-        ColumnSpec(name="object_id", type="string", nullable=True, description="Identifier of the affected object within the ISet (null for ISet-level events)"),
+        ColumnSpec(name="collection_id", type="string", nullable=False, description="Collection identifier"),
+        ColumnSpec(name="object_id", type="string", nullable=True, description="Identifier of the affected object within the collection"),
+        ColumnSpec(name="datatype", type="string", nullable=False, description="Type of the affected data object (e.g. SurfaceGrid)"),
     ],
-    primary_key=["date", "update_type", "iset_id", "object_id"],
-    natural_key=["date", "update_type", "iset_id", "object_id"],
+    primary_key=["date", "update_type", "collection_item_id"],
+    natural_key=["date", "update_type", "collection_item_id"],
     foreign_keys=[
         ForeignKeySpec(
-            columns=["iset_id", "object_id"],
+            columns=["collection_item_id"],
             references_table="CollectionItem",
-            references_columns=["iset_id", "object_id"],
+            references_columns=["id"],
         ),
     ],
 )

@@ -62,6 +62,7 @@ erDiagram
     }
 
     CollectionItem {
+        string id PK
         string collection_id PK, FK
         string object_id PK
         string datatype
@@ -86,8 +87,9 @@ erDiagram
     CollectionActivity {
         datetime date PK
         string update_type PK
-        string iset_id PK, FK
-        string object_id PK, FK
+        string collection_item_id PK, FK
+        string collection_id
+        string object_id
         string datatype
         string source_system
         string source_database

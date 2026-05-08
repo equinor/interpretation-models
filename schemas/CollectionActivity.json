@@ -13,13 +13,13 @@
       "name": "update_type",
       "type": "string",
       "nullable": false,
-      "description": "Type of update (e.g. ObjectCreate, ObjectUpdate, ObjectDelete, ISetInsert, ISetDelete)"
+      "description": "Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"
     },
     {
-      "name": "datatype",
+      "name": "collection_item_id",
       "type": "string",
-      "nullable": false,
-      "description": "Type of the affected data object (e.g. SurfaceGrid)"
+      "nullable": true,
+      "description": "Identifier of the affected collection item (combination of collection_id, object_id, and datatype)"
     },
     {
       "name": "source_system",
@@ -40,40 +40,42 @@
       "description": "Source project identifier"
     },
     {
-      "name": "iset_id",
+      "name": "collection_id",
       "type": "string",
       "nullable": false,
-      "description": "Interpretation set identifier"
+      "description": "Collection identifier"
     },
     {
       "name": "object_id",
       "type": "string",
       "nullable": true,
-      "description": "Identifier of the affected object within the ISet (null for ISet-level events)"
+      "description": "Identifier of the affected object within the collection"
+    },
+    {
+      "name": "datatype",
+      "type": "string",
+      "nullable": false,
+      "description": "Type of the affected data object (e.g. SurfaceGrid)"
     }
   ],
   "primary_key": [
     "date",
     "update_type",
-    "iset_id",
-    "object_id"
+    "collection_item_id"
   ],
   "natural_key": [
     "date",
     "update_type",
-    "iset_id",
-    "object_id"
+    "collection_item_id"
   ],
   "foreign_keys": [
     {
       "columns": [
-        "iset_id",
-        "object_id"
+        "collection_item_id"
       ],
       "references_table": "CollectionItem",
       "references_columns": [
-        "iset_id",
-        "object_id"
+        "id"
       ]
     }
   ],

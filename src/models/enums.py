@@ -20,7 +20,7 @@ class UpdateType(str, Enum):
     OBJECT_UPDATE = "ObjectUpdate"
     OBJECT_DELETE = "ObjectDelete"
     COLLECTION_INSERT = "CollectionInsert"
-    COLLECTION_DELETE = "CollectionDelete"
+    COLLECTION_REMOVE = "CollectionRemove"
 
 
 class OWDataType(str, Enum):
