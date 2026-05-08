@@ -20,42 +20,6 @@
       "type": "string",
       "nullable": true,
       "description": "Identifier of the affected collection item (combination of collection_id, object_id, and datatype)"
-    },
-    {
-      "name": "source_system",
-      "type": "string",
-      "nullable": false,
-      "description": "Source system identifier"
-    },
-    {
-      "name": "source_database",
-      "type": "string",
-      "nullable": false,
-      "description": "Source database identifier"
-    },
-    {
-      "name": "source_project",
-      "type": "string",
-      "nullable": false,
-      "description": "Source project identifier"
-    },
-    {
-      "name": "collection_id",
-      "type": "string",
-      "nullable": false,
-      "description": "Collection identifier"
-    },
-    {
-      "name": "object_id",
-      "type": "string",
-      "nullable": true,
-      "description": "Identifier of the affected object within the collection"
-    },
-    {
-      "name": "datatype",
-      "type": "string",
-      "nullable": false,
-      "description": "Type of the affected data object (e.g. SurfaceGrid)"
     }
   ],
   "primary_key": [

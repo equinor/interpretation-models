@@ -88,12 +88,6 @@ erDiagram
         datetime date PK
         string update_type PK
         string collection_item_id PK, FK
-        string collection_id
-        string object_id
-        string datatype
-        string source_system
-        string source_database
-        string source_project
     }
 
     SurfaceGrid_CollectionItem {
