@@ -1,9 +1,10 @@
 ```mermaid
 erDiagram
     SurfaceGrid {
-        string processing_id PK
+        string id PK
         boolean processing_file_available
-        string processing_file_error
+        string processing_file_error_message
+        string processing_file_path
         datetime processing_create_date
         datetime processing_update_date
         string source_system
@@ -43,7 +44,7 @@ erDiagram
     }
 
     Collection {
-        string processing_id PK
+        string id PK
         datetime processing_create_date
         datetime processing_update_date
         string source_system
@@ -82,6 +83,8 @@ erDiagram
         string source_ow_data_object_name
         string source_ow_data_object_id
         string source_ow_native_uid
+        datetime processing_create_date
+        datetime processing_update_date
     }
 
     CollectionActivity {
