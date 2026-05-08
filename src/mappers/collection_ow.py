@@ -160,7 +160,7 @@ def map_collection_item(
     resolved_datatype: InterpretationDataType = map_dataobject_datatype(ow_datatype)
 
     resolved_id = resolve_id(ow_data_object)
-    surrogate_id = id_generate(source_context, f"{ow_data_object.interpretation_set_id}:{resolved_datatype.value}:{resolved_id}")
+    surrogate_id = id_generate(source_context, f"Collection:{ow_data_object.interpretation_set_id}:{resolved_datatype.value}:{resolved_id}")
 
     return CollectionItem(
         id = surrogate_id,
