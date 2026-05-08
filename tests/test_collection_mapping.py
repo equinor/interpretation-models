@@ -44,7 +44,7 @@ def ow_interpretation_set() -> InterpretationSet:
 
 @pytest.fixture
 def ow_item_map2d() -> ISetDataObject:
-    """Map2D item — gridId extracted from native_uid."""
+    """Map2D item — gridId should be 1830 extracted from native_uid (not 5001 which is the container id)"""
     return ISetDataObject(
         interpretation_set_id="100",
         iset_folder_id=201,

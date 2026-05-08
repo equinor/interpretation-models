@@ -54,4 +54,60 @@ MODEL_TABLES: list[ModelTableDef] = [
 # Support tables (manually defined)
 # ---------------------------------------------------------------------------
 
-SUPPORT_TABLES: list[TableSpec] = []
+COLLECTION_ACTIVITY_TABLE = TableSpec(
+    name="CollectionActivity",
+    description="""
+    Activity log tracking changes to collections and their contained objects.
+    Each row represents a single event either directly to a collection (insert or remove objects)
+    or to one of its objects (create, update, delete)
+    Used for aggregation queries, for example:
+    - determine when a collection was last updated (potentialy filtering only on a specific datatype of interest)
+    - which collections had updates on surface grids in the last hour
+    """,
+    columns=[
+        ColumnSpec(name="event_date", type="datetime", nullable=False, description="Timestamp of the activity event"),
+        ColumnSpec(name="event_type", type="string", nullable=False, description="Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"),
+        ColumnSpec(name="collection_item_id", type="string", nullable=True, description="Identifier of the affected collection item (combination of collection_id, object_id, and datatype)"),
+    ],
+    primary_key=["event_date", "event_type", "collection_item_id"],
+    natural_key=["event_date", "event_type", "collection_item_id"],
+    foreign_keys=[
+        ForeignKeySpec(
+            columns=["collection_item_id"],
+            references_table="CollectionItem",
+            references_columns=["id"],
+        ),
+    ],
+)
+
+SURFACEGRID_COLLECTIONITEM_TABLE = TableSpec(
+    name="SurfaceGrid_CollectionItem",
+    description="""
+    Bridge table for the many-to-many relationship between SurfaceGrid and CollectionItem.
+    CollectionItem itself is polymorphic, so its object_id references different tables (SurfaceGrid, Horizon, Fault, ...).
+    Therefore, a direct foreign key from CollectionItem to each type table is not possible.
+    This bridge table provides a proper link for SurfaceGrid specifically.
+    """,
+    columns=[
+        ColumnSpec(name="collection_item_id", type="string", nullable=False, description="References the (surrogate) id in CollectionItem"),
+        ColumnSpec(name="surface_grid_id", type="string", nullable=False, description="References the id in SurfaceGrid"),
+    ],
+    primary_key=["collection_item_id", "surface_grid_id"],
+    foreign_keys=[
+        ForeignKeySpec(
+            columns=["collection_item_id"],
+            references_table="CollectionItem",
+            references_columns=["id"],
+        ),
+        ForeignKeySpec(
+            columns=["surface_grid_id"],
+            references_table="SurfaceGrid",
+            references_columns=["id"],
+        ),
+    ],
+)
+
+SUPPORT_TABLES: list[TableSpec] = [
+    COLLECTION_ACTIVITY_TABLE,
+    SURFACEGRID_COLLECTIONITEM_TABLE,
+]
