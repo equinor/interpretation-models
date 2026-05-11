@@ -12,6 +12,10 @@ from models.interpretation import SurfaceGridRecord
 from models.collection import Collection, CollectionItem
 from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
 
+# Increment this value (int) when any table definition changes to generate a new versioned schema set.
+# All tables will be part of the new version - individual tables don't have separate version numbers.
+SCHEMA_VERSION = 1
+
 # ---------------------------------------------------------------------------
 # Model tables
 # ---------------------------------------------------------------------------
@@ -80,34 +84,6 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
     ],
 )
 
-SURFACEGRID_COLLECTIONITEM_TABLE = TableSpec(
-    name="SurfaceGrid_CollectionItem",
-    description="""
-    Bridge table for the many-to-many relationship between SurfaceGrid and CollectionItem.
-    CollectionItem itself is polymorphic, so its object_id references different tables (SurfaceGrid, Horizon, Fault, ...).
-    Therefore, a direct foreign key from CollectionItem to each type table is not possible.
-    This bridge table provides a proper link for SurfaceGrid specifically.
-    """,
-    columns=[
-        ColumnSpec(name="collection_item_id", type="string", nullable=False, description="References the (surrogate) id in CollectionItem"),
-        ColumnSpec(name="surface_grid_id", type="string", nullable=False, description="References the id in SurfaceGrid"),
-    ],
-    primary_key=["collection_item_id", "surface_grid_id"],
-    foreign_keys=[
-        ForeignKeySpec(
-            columns=["collection_item_id"],
-            references_table="CollectionItem",
-            references_columns=["id"],
-        ),
-        ForeignKeySpec(
-            columns=["surface_grid_id"],
-            references_table="SurfaceGrid",
-            references_columns=["id"],
-        ),
-    ],
-)
-
 SUPPORT_TABLES: list[TableSpec] = [
     COLLECTION_ACTIVITY_TABLE,
-    SURFACEGRID_COLLECTIONITEM_TABLE,
 ]

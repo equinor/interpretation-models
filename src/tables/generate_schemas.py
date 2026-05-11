@@ -1,6 +1,6 @@
 """Registry of all intended table schemas.
 
-Run this script to regenerate the serialized schemas under /schemas:
+Run this script to regenerate the serialized schemas under src/schemas/definitions:
 
     python -m tables.generate_schemas
 
@@ -16,7 +16,7 @@ from tables import (
     model_to_tablespec,
     tablespec_to_json,
 )
-from tables.table_definitions import MODEL_TABLES, SUPPORT_TABLES
+from tables.table_definitions import MODEL_TABLES, SCHEMA_VERSION, SUPPORT_TABLES
 
 
 def generate_table_schemas(
@@ -43,17 +43,30 @@ def generate_table_schemas(
 
 def serialize_table_schemas(
     specs: list[TableSpec],
+    version: int,
     output_dir: str | Path = "schemas",
+    overwrite: bool = False,
 ) -> Path:
-    """Write each ``TableSpec`` as a pretty-printed JSON file under *output_dir*.
+    """Write each ``TableSpec`` as a JSON file under *output_dir*/v{version}/.
+
+    Schemas are organized into version subfolders: ``v{version}/{name}.json``.
+    Raises FileExistsError if a file already exists unless *overwrite* is True.
 
     Returns the resolved output directory.
     """
     output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+    version_dir = output_path / f"v{version}"
+    version_dir.mkdir(parents=True, exist_ok=True)
 
     for spec in specs:
-        file_path = output_path / f"{spec.name}.json"
+        file_path = version_dir / f"{spec.name}.json"
+
+        if file_path.exists() and not overwrite:
+            raise FileExistsError(
+                f"Schema files already exist for version {version} in {output_path}. "
+                f"Re-run with --overwrite to regenerate."
+            )
+        
         json_model = tablespec_to_json(spec)
         file_path.write_text(
             data=json_model + "\n",
@@ -68,10 +81,17 @@ def build_all_specs() -> list[TableSpec]:
 
 
 def main() -> None:
+    import sys
+
     specs = build_all_specs()
-    output_dir = Path(__file__).resolve().parents[2] / "schemas"
-    serialize_table_schemas(specs, output_dir=output_dir)
-    print(f"Wrote {len(specs)} schema(s) to {output_dir}")
+    overwrite = "--overwrite" in sys.argv
+    output_dir = Path(__file__).resolve().parents[1] / "schemas" / "definitions"
+
+    try:
+        serialize_table_schemas(specs, version=SCHEMA_VERSION, output_dir=output_dir, overwrite=overwrite)
+        print(f"Wrote {len(specs)} json file(s) to {output_dir} for schema version {SCHEMA_VERSION}.")
+    except FileExistsError as e:
+        print(f"{e}")
 
 
 if __name__ == "__main__":

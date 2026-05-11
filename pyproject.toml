@@ -19,6 +19,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "models" = ["py.typed"]
+"schemas" = ["definitions/**/*.json"]
 
 [dependency-groups]
 dev = [
