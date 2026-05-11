@@ -150,7 +150,9 @@ def map_collection_item(
 
     source_ow_metadata = OWCollectionItemMetadata(
         data_type=ow_data_object.data_type,
-        native_uid=ow_data_object.native_uid,
+        data_key=ow_data_object.data_key,
+        interpretation_set_id=ow_data_object.interpretation_set_id,
+        iset_folder_id=ow_data_object.iset_folder_id,
     )
 
     ow_datatype: OWDataType = OWDataType(ow_data_object.data_type) if ow_data_object.data_type in OWDataType._value2member_map_ else OWDataType.OTHERS
