@@ -65,8 +65,6 @@ class OWCollectionMetadata(OWMetadata):
 
 class OWCollectionItemMetadata(OWMetadata):
     data_type: str | None = None
-    data_object_name: str | None = None
-    data_object_id: str | None = None
     native_uid: str | None = None
 
 

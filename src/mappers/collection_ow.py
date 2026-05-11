@@ -129,12 +129,11 @@ def map_collection_item(
         ow_data_object.update_date = ow_data_object.create_date
         ow_data_object.update_user_id = ow_data_object.create_user_id
 
-    object_id=str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.native_uid or ""
     source_metadata = SourceMetadata(
         system=SourceSystem.OPENWORKS,
         database=source_context.database,
         project=source_context.project,
-        id=object_id,
+        id=str(ow_data_object.data_object_id) if ow_data_object.data_object_id else None,
         name=ow_data_object.data_object_name,
         remark=ow_data_object.remark,
         create_user=ow_data_object.create_user_id,
@@ -151,8 +150,6 @@ def map_collection_item(
 
     source_ow_metadata = OWCollectionItemMetadata(
         data_type=ow_data_object.data_type,
-        data_object_name=ow_data_object.data_object_name,
-        data_object_id=object_id,
         native_uid=ow_data_object.native_uid,
     )
 

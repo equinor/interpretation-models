@@ -178,8 +178,6 @@ class TestMapCollectionItemContract:
             "source_update_date": "2021-06-20T14:00:00",
             "source_update_date_utc": "2021-06-20T12:00:00Z",
             "source_ow_data_type": "Map2D",
-            "source_ow_data_object_name": "Hugin Fm. Top depth",
-            "source_ow_data_object_id": "5001",
             "source_ow_native_uid": json.dumps({
                 "interpretation_set_id": 100,
                 "iset_folder_id": 201,
@@ -219,8 +217,6 @@ class TestMapCollectionItemContract:
             "source_update_date": "2020-05-10T08:00:00",
             "source_update_date_utc": "2020-05-10T06:00:00Z",
             "source_ow_data_type": "Rgrid",
-            "source_ow_data_object_name": "Draupne Fm. depth",
-            "source_ow_data_object_id": "2636",
             "source_ow_native_uid": json.dumps({
                 "interpretation_set_id": 100,
                 "iset_folder_id": 202,
@@ -260,8 +256,6 @@ class TestMapCollectionItemContract:
             "source_update_date": None,
             "source_update_date_utc": None,
             "source_ow_data_type": "Map2D",
-            "source_ow_data_object_name": "Broken Map2D",
-            "source_ow_data_object_id": "5002",
             "source_ow_native_uid": json.dumps({
                 "interpretation_set_id": 100,
                 "iset_folder_id": 203,

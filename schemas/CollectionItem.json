@@ -106,18 +106,6 @@
       "description": ""
     },
     {
-      "name": "source_ow_data_object_name",
-      "type": "string",
-      "nullable": true,
-      "description": ""
-    },
-    {
-      "name": "source_ow_data_object_id",
-      "type": "string",
-      "nullable": true,
-      "description": ""
-    },
-    {
       "name": "source_ow_native_uid",
       "type": "string",
       "nullable": true,
