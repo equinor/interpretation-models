@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0](https://github.com/equinor/interpretation-models/compare/v0.3.0...v0.4.0) (2026-05-12)
+
+
+### Features
+
+* add a surrogate key to CollectionItem ([#23](https://github.com/equinor/interpretation-models/issues/23)) ([a0bafaf](https://github.com/equinor/interpretation-models/commit/a0bafaffa5876e68fdcb93647e7032bcbc8bbfd3))
+* update CollectionItem OW source metadata ([#26](https://github.com/equinor/interpretation-models/issues/26)) ([e236a89](https://github.com/equinor/interpretation-models/commit/e236a89d37930d5249f1fc81f233f429f9ab5b02))
+* autogeneration of schema version 1 ([2766333](https://github.com/equinor/interpretation-models/commit/27663339f454124fe53bd18dce5a942825cd8d81))
+* schema management with registry and versioning ([ac84d2b](https://github.com/equinor/interpretation-models/commit/ac84d2b1fadf6cc6a46b4425f0d74c3b2ef40e37))
+
+### Internal
+
+* copilot agent configuration for schema management ([8fcc2d5](https://github.com/equinor/interpretation-models/commit/8fcc2d5d5bf19bdee76684c7a9f31c6ea73160fd))
+* ignore file for vscode settings ([152c4c3](https://github.com/equinor/interpretation-models/commit/152c4c3a9b34d399f8bfa782b93a78641983a650))
+* remove older generated JSON schema files ([b245603](https://github.com/equinor/interpretation-models/commit/b24560375ad1fae25a64d615035f1f1b56ce8b60))
+
+
 ## [0.3.0](https://github.com/equinor/interpretation-models/compare/v0.2.0...v0.3.0) (2026-04-28)
 
 
@@ -24,8 +41,8 @@
 
 ### Documentation
 
-* Document repo design, intention, and models ([c163e18](https://github.com/equinor/interpretation-models/commit/c163e1811e9d83780cf0805ac52bdf2f68ccb5d9))
-* Improvement to the rows/cols explaining ([4148c63](https://github.com/equinor/interpretation-models/commit/4148c6343d1f865886315a62e30d1bad01d8b7a8))
+* document repo design, intention, and models ([c163e18](https://github.com/equinor/interpretation-models/commit/c163e1811e9d83780cf0805ac52bdf2f68ccb5d9))
+* improvement to the rows/cols explaining ([4148c63](https://github.com/equinor/interpretation-models/commit/4148c6343d1f865886315a62e30d1bad01d8b7a8))
 
 ## 0.1.0 (2026-04-10)
 
