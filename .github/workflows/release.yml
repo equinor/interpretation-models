@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  release:
+    name: Release
+    uses: equinor/ops-actions/.github/workflows/release-please.yml@v9.33.0
+    with:
+      release_type: python
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+  build:
+    name: Build
+    needs: release
+    if: needs.release.outputs.release_created == 'true'
+    uses: equinor/ops-actions/.github/workflows/python-package.yml@v9.33.0
+    permissions:
+      contents: read
+
+  # Reusable workflows are not currently supported by PyPI Trusted Publishing.
+  # Ref: https://docs.pypi.org/trusted-publishers/troubleshooting/#reusable-workflows-on-github
+  pypi-publish:
+    name: PyPI Publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # Required for PyPI Trusted Publishing.
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: ${{ needs.build.outputs.artifact_name }}
+          path: dist
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e

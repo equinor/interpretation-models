@@ -1,50 +1,55 @@
 from pydantic import BaseModel
-from datetime import datetime
 from models.extent import Extent
-from models.origin import Collection, Project
+from models.metadata import SourceMetadata, InterpretationProcessingMetadata, OWMetadata, OWSurfaceGridMetadata, PetrelMetadata
 
 
-class OWMetadata(BaseModel):
-    geo_name: str | None = None
-    geo_type: str | None = None
-    attribute: str | None = None
-
-
-class PetrelMetadata(BaseModel):
-    business_project: str | None = None
-    data_status: str | None = None
-    confidence_factor: str | None = None
-
-
-class SourceMetadata(BaseModel):
-    project: Project
-    native_uid: str | None = None
-    name: str
-    crs: str
+class InterpretationRecord(BaseModel):
+    id: str
+    source: SourceMetadata | None = None
+    source_ow: OWMetadata | None = None
+    source_petrel: PetrelMetadata | None = None
+    processing: InterpretationProcessingMetadata | None = None
+    extent: Extent | None = None
+    crs: str | None = None
     z_domain: str | None = None
     z_unit: str | None = None
-    create_user: str | None = None
-    update_user: str | None = None
-    remark: str | None = None
-    create_date: datetime | None = None
-    create_date_utc: datetime | None = None
-    update_date: datetime | None = None
-    update_date_utc: datetime | None = None
-    ow: OWMetadata | None = None
-    petrel: PetrelMetadata | None = None
 
 
-class PipelineMetadata(BaseModel):
-    id: str  # SID UUID
-    create_date: datetime | None = None
-    update_date: datetime | None = None
-    file_availability: str | None = None
-    deleted: bool | None = None
-    deleted_date: datetime | None = None
+class GridGeometry(BaseModel):
+    ncol: int | None = None
+    nrow: int | None = None
+    xori: float | None = None
+    yori: float | None = None
+    xinc: float | None = None
+    yinc: float | None = None
+    rotation: float | None = None
+    left_handed: bool | None = True  # yflip
 
 
-class Interpretation(BaseModel):
-    source: SourceMetadata | None = None
-    pipeline: PipelineMetadata | None = None
-    extent: Extent | None = None
-    collection: list[Collection]
+class GriddedInterpretationRecord(InterpretationRecord):
+    geometry: GridGeometry | None = None
+    grid_null_value: float | None = None
+    grid_ntotal: int | None = None
+    grid_nnan: int | None = None
+
+
+class VectorInterpretationRecord(InterpretationRecord):
+    num_points: int | None = None
+    num_properties: int | None = None
+
+
+class SurfaceGridRecord(GriddedInterpretationRecord):
+    """
+    A surface defined in a regular 2D grid containing values for each of the points in the grid.
+    The grid geometry is defined by the ``geometry`` parameters, which are sufficient to locate each point in space.
+    SurfaceGrids are typically (but not necessarily) originated from a horizon, replacing its seismic bin grid by a
+    locally defined grid (potentially after regridding)
+    The values are stored separately as a flattened 2D array, the format of which is explained in
+    http://github.com/equinor/interpretation-models/docs/bulk_data_models.md
+    The values can represent a structural surface (depth or time) or a property defined on a surface
+    (e.g. attribute, uncertainty, …).
+    In the case the values represent a property, there's optionally included a parent structural surface that the
+    property is defined on.
+    """
+    source_ow: OWSurfaceGridMetadata | None = None
+    parent_surface_id: str | None = None

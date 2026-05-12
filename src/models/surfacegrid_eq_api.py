@@ -1,10 +1,9 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-# this class is just here for development purposes, to compare the v2 and v3 models; can be removed later
-
-
-class SurfaceGrid_SIDv2(BaseModel):
+# this class is created for internal development purposes to map the existing Equinor Surfaces API model to the interpretation models
+# it is not intended to be a long-term part of the codebase and may be deleted in the future
+class SurfaceGrid_Eq_Api(BaseModel):
     ssdf_uuid: str | None = None
 
     # Source

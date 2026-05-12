@@ -1,0 +1,76 @@
+from pydantic import BaseModel
+from datetime import datetime
+from models.enums import SourceSystem
+
+
+class ProcessingMetadata(BaseModel):
+    create_date: datetime | None = None
+    update_date: datetime | None = None
+
+
+class InterpretationProcessingMetadata(ProcessingMetadata):
+    """
+    Metadata related to the processing of the data, such as timestamps, UUIDs, etc.
+    This is included only so these attributes can be included in the table schemas derived from the interpretation models,
+    Callers can send the information to include directly in the output object without transformation.
+    It is optional - if not storing intermediate processing information, this can be skipped.
+    """
+    file_available: bool | None = None
+    file_error_message: str | None = None
+    file_path: str | None = None
+
+
+class SourceContext(BaseModel):
+    """
+    Meant as input only so callers can represent project metadata which is not present in typed source objects.
+    In the output models, the information derived from this is included as part of SourceMetadata.
+    See docs/design_interpretations#source-context for more details.
+    """
+    database: str
+    project: str
+    timezone: str | None = None
+    crs: str | None = None
+
+
+class SourceMetadata(BaseModel):
+    system: SourceSystem | None = None
+    database: str | None = None
+    project: str | None = None
+    id: str | None = None
+    name: str | None = None
+    remark: str | None = None
+    create_user: str | None = None
+    update_user: str | None = None
+    create_date: datetime | None = None
+    create_date_utc: datetime | None = None
+    update_date: datetime | None = None
+    update_date_utc: datetime | None = None
+
+
+class OWMetadata(BaseModel):
+    """Base class for OpenWorks source metadata. Subclassed for each interpretation type."""
+    pass
+
+
+class OWSurfaceGridMetadata(OWMetadata):
+    """OpenWorks metadata specific to surface grids."""
+    geo_name: str | None = None
+    geo_type: str | None = None
+    attribute: str | None = None
+
+
+class OWCollectionMetadata(OWMetadata):
+    field_prospect_name: str | None = None
+
+
+class OWCollectionItemMetadata(OWMetadata):
+    data_type: str | None = None
+    data_key: str | None = None
+    interpretation_set_id: str | None = None
+    iset_folder_id: int | None = None
+
+
+class PetrelMetadata(BaseModel):
+    business_project: str | None = None
+    data_status: str | None = None
+    confidence_factor: str | None = None
