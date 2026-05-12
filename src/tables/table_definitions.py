@@ -14,7 +14,7 @@ from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpe
 
 # Increment this value (int) when any table definition changes to generate a new versioned schema set.
 # All tables will be part of the new version - individual tables don't have separate version numbers.
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 # ---------------------------------------------------------------------------
 # Model tables
@@ -58,8 +58,8 @@ MODEL_TABLES: list[ModelTableDef] = [
 # Support tables (manually defined)
 # ---------------------------------------------------------------------------
 
-COLLECTION_ACTIVITY_TABLE = TableSpec(
-    name="CollectionActivity",
+COLLECTION_ITEM_ACTIVITY_TABLE = TableSpec(
+    name="CollectionItemActivity",
     description="""
     Activity log tracking changes to collections and their contained objects.
     Each row represents a single event either directly to a collection (insert or remove objects)
@@ -85,5 +85,5 @@ COLLECTION_ACTIVITY_TABLE = TableSpec(
 )
 
 SUPPORT_TABLES: list[TableSpec] = [
-    COLLECTION_ACTIVITY_TABLE,
+    COLLECTION_ITEM_ACTIVITY_TABLE,
 ]

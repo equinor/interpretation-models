@@ -87,19 +87,13 @@ erDiagram
         datetime processing_update_date
     }
 
-    CollectionActivity {
+    CollectionItemActivity {
         datetime event_date PK
         string event_type PK
         string collection_item_id PK, FK
     }
 
-    SurfaceGrid_CollectionItem {
-        string collection_item_id PK, FK
-        string surface_grid_id PK, FK
-    }
-
     Collection ||--o{ CollectionItem : "contains"
-    CollectionItem ||--o{ CollectionActivity : "tracks"
-    CollectionItem ||--o| SurfaceGrid_CollectionItem : "bridge"
-    SurfaceGrid ||--o{ SurfaceGrid_CollectionItem : "references"
+    CollectionItem ||--o{ CollectionItemActivity : "tracks"
+    SurfaceGrid ||--o{ CollectionItem : "polymorphic reference (without FK)"
 ```
