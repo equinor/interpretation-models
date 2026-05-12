@@ -106,20 +106,20 @@
       "description": ""
     },
     {
-      "name": "source_ow_data_object_name",
+      "name": "source_ow_data_key",
       "type": "string",
       "nullable": true,
       "description": ""
     },
     {
-      "name": "source_ow_data_object_id",
+      "name": "source_ow_interpretation_set_id",
       "type": "string",
       "nullable": true,
       "description": ""
     },
     {
-      "name": "source_ow_native_uid",
-      "type": "string",
+      "name": "source_ow_iset_folder_id",
+      "type": "integer",
       "nullable": true,
       "description": ""
     },

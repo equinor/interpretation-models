@@ -65,9 +65,9 @@ class OWCollectionMetadata(OWMetadata):
 
 class OWCollectionItemMetadata(OWMetadata):
     data_type: str | None = None
-    data_object_name: str | None = None
-    data_object_id: str | None = None
-    native_uid: str | None = None
+    data_key: str | None = None
+    interpretation_set_id: str | None = None
+    iset_folder_id: int | None = None
 
 
 class PetrelMetadata(BaseModel):

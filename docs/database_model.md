@@ -80,9 +80,9 @@ erDiagram
         datetime source_update_date
         datetime source_update_date_utc
         string source_ow_data_type
-        string source_ow_data_object_name
-        string source_ow_data_object_id
-        string source_ow_native_uid
+        string source_ow_data_key
+        string source_ow_interpretation_set_id
+        int source_ow_iset_folder_id
         datetime processing_create_date
         datetime processing_update_date
     }
