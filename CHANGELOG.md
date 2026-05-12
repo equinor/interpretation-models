@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/equinor/interpretation-models/compare/v0.4.0...v0.4.1) (2026-05-12)
+
+
+### Bug Fixes
+
+* rename CollectionItemActivity ([#29](https://github.com/equinor/interpretation-models/issues/29)) ([c49b0a9](https://github.com/equinor/interpretation-models/commit/c49b0a97f31a2fe9012f4b94ab48385cd3a818be))
+
 ## [0.4.0](https://github.com/equinor/interpretation-models/compare/v0.3.0...v0.4.0) (2026-05-12)
 
 
