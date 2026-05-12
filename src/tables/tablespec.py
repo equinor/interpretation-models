@@ -34,7 +34,6 @@ class TableSpec(BaseModel):
     primary_key: list[str] = []
     natural_key: list[str] = []
     foreign_keys: list[ForeignKeySpec] = []
-    version: str = "0.1.0"
 
 
 class ModelTableDef(BaseModel):

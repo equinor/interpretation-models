@@ -1,5 +1,6 @@
 """Generation of TableSpec instances from Pydantic models and serialization to JSON."""
 
+import json
 import types
 from collections.abc import Iterator
 from datetime import datetime
@@ -18,9 +19,9 @@ from tables.tablespec import ColumnSpec, ModelTableDef, TableSpec
 _SCALAR_TYPE_MAP: dict[type, str] = {
     str: "string",
     int: "integer",
-    float: "float",
+    float: "double",
     bool: "boolean",
-    datetime: "datetime",
+    datetime: "timestamp",
 }
 
 
@@ -40,7 +41,7 @@ def _map_scalar_type(tp: type) -> str:
         return _SCALAR_TYPE_MAP[tp]
     if isinstance(tp, type) and issubclass(tp, Enum):
         return "string"
-    return "json"
+    return "string"
 
 
 # ---------------------------------------------------------------------------
@@ -143,7 +144,6 @@ def flatten_record(instance: BaseModel) -> dict[str, object]:
 
 def model_to_tablespec(
     model_table: ModelTableDef,
-    version: str = "0.1.0",
 ) -> TableSpec:
     """Generate a ``TableSpec`` by flattening a ``ModelTableDef`` model.
 
@@ -151,8 +151,6 @@ def model_to_tablespec(
     ----------
     model_table:
         Declarative model-table definition containing model, table name, and keys.
-    version:
-        Design-time schema version (light semver recommended).
     """
     columns = flatten_columns(model_table.model)
     model_attributes = {column.name for column in columns}
@@ -173,10 +171,22 @@ def model_to_tablespec(
         primary_key=model_table.primary_key,
         natural_key=model_table.natural_key,
         foreign_keys=model_table.foreign_keys,
-        version=version,
     )
 
 
 def tablespec_to_json(spec: TableSpec) -> str:
-    return spec.model_dump_json(indent=2, exclude={"columns": {"__all__": {"source_field"}}})
+    """Serialize a ``TableSpec`` as PySpark StructType-compatible JSON.
 
+    The output can be loaded with ``pyspark.sql.types.StructType.fromJson()``.
+    """
+    fields = [
+        {
+            "name": col.name,
+            "type": col.type,
+            "nullable": col.nullable,
+            "metadata": {"description": col.description} if col.description else {},
+        }
+        for col in spec.columns
+    ]
+
+    return json.dumps({"type": "struct", "fields": fields}, indent=2)
