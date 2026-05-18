@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/equinor/interpretation-models/compare/v0.4.1...v0.5.0) (2026-05-18)
+
+
+### Features
+
+* schema name enum value used as single source of truth ([#33](https://github.com/equinor/interpretation-models/issues/33)) ([0b66f3a](https://github.com/equinor/interpretation-models/commit/0b66f3a979303b462aa3a7318edbfa473b4d1f9a))
+
 ## [0.4.1](https://github.com/equinor/interpretation-models/compare/v0.4.0...v0.4.1) (2026-05-12)
 
 
