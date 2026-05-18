@@ -5,7 +5,7 @@ from models.enums import SourceSystem
 from models.metadata import SourceMetadata, OWSurfaceGridMetadata, InterpretationProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
-from mappers.metadata_ow import convert_date_to_utc, id_generate
+from mappers.metadata_ow import convert_date_to_utc, localize_date, id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
@@ -39,11 +39,13 @@ def map_surfacegrid(
 
         create_user=ow_surface.create_user_id,
         update_user=ow_surface.update_user_id,
-        create_date=ow_surface.create_date,
+        create_date=localize_date(ow_surface.create_date, source_context.timezone)
+        if ow_surface.create_date is not None else None,
         create_date_utc=convert_date_to_utc(
             ow_surface.create_date, source_context.timezone
         ) if ow_surface.create_date is not None else None,
-        update_date=ow_surface.update_date,
+        update_date=localize_date(ow_surface.update_date, source_context.timezone)
+        if ow_surface.update_date is not None else None,
         update_date_utc=convert_date_to_utc(
             ow_surface.update_date, source_context.timezone
         ) if ow_surface.update_date is not None else None,
