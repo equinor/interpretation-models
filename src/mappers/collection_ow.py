@@ -2,10 +2,10 @@ import json
 import re
 
 from models.metadata import SourceContext
-from models.enums import SourceSystem, OWDataType, InterpretationDataType
-from models.metadata import SourceMetadata, ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
+from models.enums import OWDataType, InterpretationDataType
+from models.metadata import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
 from models.collection import Collection, CollectionItem
-from mappers.metadata_ow import convert_date_to_utc, localize_date, id_generate
+from mappers.metadata_ow import map_ow_source_metadata, id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 
@@ -24,30 +24,11 @@ def map_collection(
     Returns:
         Collection instance
     """
-    if ow_iset.update_date is None:
-        ow_iset.update_date = ow_iset.create_date
-        ow_iset.update_user_id = ow_iset.create_user_id
-
-    source_metadata = SourceMetadata(
+    source_metadata = map_ow_source_metadata(
+        ow_object=ow_iset,
+        source_context=source_context,
         id=id_generate(source_context, ow_iset.interpretation_set_id),
-        system=SourceSystem.OPENWORKS,
-        database=source_context.database,
-        project=source_context.project,
         name=ow_iset.interpret_set_name,
-        remark=ow_iset.remark,
-
-        create_user=ow_iset.create_user_id,
-        update_user=ow_iset.update_user_id,
-        create_date=localize_date(ow_iset.create_date, source_context.timezone)
-        if ow_iset.create_date is not None else None,
-        create_date_utc=convert_date_to_utc(
-            ow_iset.create_date, source_context.timezone
-        ) if ow_iset.create_date is not None else None,
-        update_date=localize_date(ow_iset.update_date, source_context.timezone)
-        if ow_iset.update_date is not None else None,
-        update_date_utc=convert_date_to_utc(
-            ow_iset.update_date, source_context.timezone
-        ) if ow_iset.update_date is not None else None,
     )
 
     source_ow_metadata = OWCollectionMetadata(
@@ -127,30 +108,12 @@ def map_collection_item(
     Returns:
         CollectionItem instance
     """
-    if ow_data_object.update_date is None:
-        ow_data_object.update_date = ow_data_object.create_date
-        ow_data_object.update_user_id = ow_data_object.create_user_id
-
     ow_id: str = str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.data_key
-    source_metadata = SourceMetadata(
-        system=SourceSystem.OPENWORKS,
-        database=source_context.database,
-        project=source_context.project,
+    source_metadata = map_ow_source_metadata(
+        ow_object=ow_data_object, 
+        source_context=source_context,
         id=ow_id,
         name=ow_data_object.data_object_name,
-        remark=ow_data_object.remark,
-        create_user=ow_data_object.create_user_id,
-        update_user=ow_data_object.update_user_id,
-        create_date=localize_date(ow_data_object.create_date, source_context.timezone)
-        if ow_data_object.create_date is not None else None,
-        create_date_utc=convert_date_to_utc(
-            ow_data_object.create_date, source_context.timezone
-        ) if ow_data_object.create_date is not None else None,
-        update_date=localize_date(ow_data_object.update_date, source_context.timezone)
-        if ow_data_object.update_date is not None else None,
-        update_date_utc=convert_date_to_utc(
-            ow_data_object.update_date, source_context.timezone
-        ) if ow_data_object.update_date is not None else None,
     )
 
     source_ow_metadata = OWCollectionItemMetadata(
