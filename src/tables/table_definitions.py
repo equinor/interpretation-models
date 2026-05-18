@@ -10,6 +10,7 @@ not on the Pydantic model objects themselves.
 
 from models.interpretation import SurfaceGridRecord
 from models.collection import Collection, CollectionItem
+from schemas.registry import SchemaName
 from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
 
 # Increment this value (int) when any table definition changes to generate a new versioned schema set.
@@ -22,21 +23,21 @@ SCHEMA_VERSION = 1
 
 SURFACE_GRID_TABLE = ModelTableDef(
     model=SurfaceGridRecord,
-    name="SurfaceGrid",
+    name=SchemaName.SURFACE_GRID,
     primary_key=["id"],
     natural_key=["source_system", "source_database", "source_project", "source_id"],
 )
 
 COLLECTION_TABLE = ModelTableDef(
     model=Collection,
-    name="Collection",
+    name=SchemaName.COLLECTION,
     primary_key=["id"],
     natural_key=["source_system", "source_database", "source_project", "source_id"],
 )
 
 COLLECTION_ITEM_TABLE = ModelTableDef(
     model=CollectionItem,
-    name="CollectionItem",
+    name=SchemaName.COLLECTION_ITEM,
     primary_key=["id"],
     natural_key=["collection_id", "object_id", "datatype"],
     foreign_keys=[
@@ -59,7 +60,7 @@ MODEL_TABLES: list[ModelTableDef] = [
 # ---------------------------------------------------------------------------
 
 COLLECTION_ITEM_ACTIVITY_TABLE = TableSpec(
-    name="CollectionItemActivity",
+    name=SchemaName.COLLECTION_ITEM_ACTIVITY,
     description="""
     Activity log tracking changes to collections and their contained objects.
     Each row represents a single event either directly to a collection (insert or remove objects)
