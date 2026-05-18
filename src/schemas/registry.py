@@ -14,7 +14,7 @@ class SchemaName(StrEnum):
     SURFACE_GRID = "SurfaceGrid"
     COLLECTION = "Collection"
     COLLECTION_ITEM = "CollectionItem"
-    COLLECTION_ACTIVITY = "CollectionActivity"
+    COLLECTION_ITEM_ACTIVITY = "CollectionItemActivity"
 
 
 class SchemaRegistry:
