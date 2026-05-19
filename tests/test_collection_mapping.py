@@ -13,8 +13,8 @@ import pytest
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 from mappers import collection_from_ow, collection_item_from_ow
-from models.collection import Collection, CollectionItem
-from models.metadata import SourceContext
+from models import Collection, CollectionItem
+from models import SourceContext
 from tables import flatten_record, flatten_columns
 
 

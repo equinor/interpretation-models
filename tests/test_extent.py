@@ -1,6 +1,6 @@
 import pytest
 from pydantic import ValidationError
-from models.extent import Extent, Point
+from models import Extent, Point
 
 
 def test_extent_validate_minimum_points_valid():

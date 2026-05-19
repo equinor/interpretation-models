@@ -1,8 +1,8 @@
 import datetime
 
 from mappers.openworks.metadata import _convert_date_to_utc, _localize_date, _id_generate, source_metadata_from_ow
-from models.metadata import SourceContext, SourceMetadata
-from models.enums import SourceSystem
+from models import SourceContext, SourceMetadata
+from models import SourceSystem
 from dsis_model_sdk.models.native import InterpretationSet
 
 

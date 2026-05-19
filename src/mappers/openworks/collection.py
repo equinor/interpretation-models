@@ -1,10 +1,10 @@
 import json
 import re
 
-from models.metadata import SourceContext
-from models.enums import OWDataType, InterpretationDataType
-from models.metadata import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
-from models.collection import Collection, CollectionItem
+from models import SourceContext
+from models import OWDataType, InterpretationDataType
+from models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
+from models import Collection, CollectionItem
 from mappers.openworks.metadata import source_metadata_from_ow, _id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 

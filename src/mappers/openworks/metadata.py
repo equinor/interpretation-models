@@ -1,8 +1,8 @@
 import datetime
 from typing import TypeAlias
 
-from models.metadata import SourceContext, SourceMetadata
-from models.enums import SourceSystem
+from models import SourceContext, SourceMetadata
+from models import SourceSystem
 import pytz
 
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties

@@ -1,9 +1,9 @@
 import math
 
-from models.metadata import SourceContext
-from models.metadata import OWSurfaceGridMetadata, InterpretationProcessingMetadata
-from models.interpretation import GridGeometry
-from models.interpretation import SurfaceGridRecord
+from models import SourceContext
+from models import OWSurfaceGridMetadata, InterpretationProcessingMetadata
+from models import GridGeometry
+from models import SurfaceGridRecord
 from mappers.openworks.metadata import source_metadata_from_ow, _id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 

@@ -5,8 +5,8 @@ import pytest
 from dsis_model_sdk.models.common import SurfaceGrid
 from mappers.surface_helpers import normalize_surfacegrid_payload
 
-from models.metadata import InterpretationProcessingMetadata
-from models.metadata import SourceContext
+from models import InterpretationProcessingMetadata
+from models import SourceContext
 
 
 @pytest.fixture

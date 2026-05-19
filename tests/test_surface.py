@@ -1,5 +1,5 @@
 import pytest
-from models.interpretation import SurfaceGridRecord
+from models import SurfaceGridRecord
 
 
 def test_surface_grid_record_accepts_no_required_fields():

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from models.enums import InterpretationDataType
-from models.metadata import SourceMetadata, ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata
+from models.interpretations.metadata import SourceMetadata, ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata
 
 
 class CollectionItem(BaseModel):

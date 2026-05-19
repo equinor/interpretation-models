@@ -8,7 +8,7 @@ and values match the record.
 
 import pytest
 from mappers import surfacegrid_from_ow
-from models.interpretation import SurfaceGridRecord
+from models import SurfaceGridRecord
 from tables import flatten_record
 
 
