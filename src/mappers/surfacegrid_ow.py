@@ -1,11 +1,10 @@
 import math
 
 from models.metadata import SourceContext
-from models.enums import SourceSystem
-from models.metadata import SourceMetadata, OWSurfaceGridMetadata, InterpretationProcessingMetadata
+from models.metadata import OWSurfaceGridMetadata, InterpretationProcessingMetadata
 from models.interpretation import GridGeometry
 from models.interpretation import SurfaceGridRecord
-from mappers.metadata_ow import convert_date_to_utc, id_generate
+from mappers.metadata_ow import map_ow_source_metadata, id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
@@ -24,29 +23,11 @@ def map_surfacegrid(
     Returns:
         SurfaceGridRecord instance
     """
-    if ow_surface.update_date is None:
-        ow_surface.update_date = ow_surface.create_date
-        ow_surface.update_user_id = ow_surface.create_user_id
-
-    source_metadata = SourceMetadata(
-        system=SourceSystem.OPENWORKS,
-        database=source_context.database,
-        project=source_context.project,
-        
+    source_metadata = map_ow_source_metadata(
+        ow_object=ow_surface,
+        source_context=source_context,
         id=ow_surface.native_uid,
         name=ow_surface.map_data_set_name,
-        remark=ow_surface.remark,
-
-        create_user=ow_surface.create_user_id,
-        update_user=ow_surface.update_user_id,
-        create_date=ow_surface.create_date,
-        create_date_utc=convert_date_to_utc(
-            ow_surface.create_date, source_context.timezone
-        ) if ow_surface.create_date is not None else None,
-        update_date=ow_surface.update_date,
-        update_date_utc=convert_date_to_utc(
-            ow_surface.update_date, source_context.timezone
-        ) if ow_surface.update_date is not None else None,
     )
 
     source_ow_metadata = OWSurfaceGridMetadata(
