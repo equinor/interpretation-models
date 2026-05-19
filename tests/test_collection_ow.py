@@ -1,6 +1,6 @@
 from dsis_model_sdk.models.native import ISetDataObject
 
-from mappers.collection_ow import resolve_id
+from mappers.openworks.collection import resolve_id
 
 
 def test_resolve_id_map2d_extracts_grid_id_from_native_uid() -> None:

@@ -12,7 +12,7 @@ from datetime import datetime
 import pytest
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
-from mappers.collection_ow import map_collection, map_collection_item
+from mappers.openworks.collection import map_collection, map_collection_item
 from models.collection import Collection, CollectionItem
 from models.metadata import SourceContext
 from tables import flatten_record, flatten_columns
