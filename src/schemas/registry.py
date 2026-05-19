@@ -11,10 +11,10 @@ from typing import Self
 class SchemaName(StrEnum):
     """Known table schema names."""
 
-    SURFACE_GRID = "SurfaceGrid"
-    COLLECTION = "Collection"
-    COLLECTION_ITEM = "CollectionItem"
-    COLLECTION_ITEM_ACTIVITY = "CollectionItemActivity"
+    SURFACE_GRID = "surface_grid"
+    COLLECTION = "collection"
+    COLLECTION_ITEM = "collection_item"
+    COLLECTION_ITEM_ACTIVITY = "collection_item_activity"
 
 
 class SchemaRegistry:

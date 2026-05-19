@@ -43,7 +43,7 @@ COLLECTION_ITEM_TABLE = ModelTableDef(
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_id"],
-            references_table="Collection",
+            references_table=SchemaName.COLLECTION,
             references_columns=["id"],
         )
     ],
@@ -79,7 +79,7 @@ COLLECTION_ITEM_ACTIVITY_TABLE = TableSpec(
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_item_id"],
-            references_table="CollectionItem",
+            references_table=SchemaName.COLLECTION_ITEM,
             references_columns=["id"],
         ),
     ],
