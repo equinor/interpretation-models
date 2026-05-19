@@ -1,6 +1,6 @@
 from dsis_model_sdk.models.native import ISetDataObject
 
-from mappers.openworks.collection import resolve_id
+from mappers.openworks.collection import _resolve_id
 
 
 def test_resolve_id_map2d_extracts_grid_id_from_native_uid() -> None:
@@ -15,7 +15,7 @@ def test_resolve_id_map2d_extracts_grid_id_from_native_uid() -> None:
     }
     ow_data_object = ISetDataObject(**data_object_json)
 
-    assert resolve_id(ow_data_object) == "42"
+    assert _resolve_id(ow_data_object) == "42"
 
 
 def test_resolve_id_map2d_without_grid_id_returns_empty_string() -> None:
@@ -30,7 +30,7 @@ def test_resolve_id_map2d_without_grid_id_returns_empty_string() -> None:
     }
     ow_data_object = ISetDataObject(**data_object_json)
 
-    assert resolve_id(ow_data_object) == ""
+    assert _resolve_id(ow_data_object) == ""
 
 
 def test_resolve_id_non_map2d_uses_data_object_id() -> None:
@@ -45,7 +45,7 @@ def test_resolve_id_non_map2d_uses_data_object_id() -> None:
     }
     ow_data_object = ISetDataObject(**data_object_json)
 
-    assert resolve_id(ow_data_object) == "1357"
+    assert _resolve_id(ow_data_object) == "1357"
 
 
 def test_resolve_id_non_map2d_without_data_object_id_returns_empty_string() -> None:
@@ -59,4 +59,4 @@ def test_resolve_id_non_map2d_without_data_object_id_returns_empty_string() -> N
     }
     ow_data_object = ISetDataObject(**data_object_json)
 
-    assert resolve_id(ow_data_object) == ""
+    assert _resolve_id(ow_data_object) == ""

@@ -7,14 +7,14 @@ and values match the record.
 
 
 import pytest
+from mappers import surfacegrid_from_ow
 from models.interpretation import SurfaceGridRecord
-from mappers.openworks.surfacegrid import map_surfacegrid
 from tables import flatten_record
 
 
 @pytest.fixture
 def surface_record(surfacegrid_obj, source_context, processing_metadata) -> SurfaceGridRecord:
-    return map_surfacegrid(surfacegrid_obj, source_context, processing_metadata)
+    return surfacegrid_from_ow(surfacegrid_obj, source_context, processing_metadata)
 
 
 class TestMapSurfacegridContract:

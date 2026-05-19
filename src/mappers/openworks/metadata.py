@@ -16,13 +16,13 @@ OWSourceObject: TypeAlias = (
     | SurfaceGridProperties
 )
 
-def id_generate(
+def _id_generate(
     context: SourceContext, native_id: str
 ) -> str:
     return f"{context.database}:{context.project}:{native_id}"
 
 
-def localize_date(
+def _localize_date(
     date: datetime.datetime, timezone: str | None = None
 ) -> datetime.datetime:
     """Attach the given timezone to a naive datetime (or convert an aware one)."""
@@ -32,16 +32,16 @@ def localize_date(
     return local_tz.localize(date) if date.tzinfo is None else date.astimezone(local_tz)
 
 
-def convert_date_to_utc(
+def _convert_date_to_utc(
     date: datetime.datetime, timezone: str | None = None
 ) -> datetime.datetime:
     if timezone is None:
         return date
-    local_dt = localize_date(date, timezone)
+    local_dt = _localize_date(date, timezone)
     return local_dt.astimezone(pytz.utc)
 
 
-def map_ow_source_metadata(
+def source_metadata_from_ow(
     ow_object: OWSourceObject,
     source_context: SourceContext,
     *,
@@ -65,14 +65,14 @@ def map_ow_source_metadata(
         remark=ow_object.remark,
         create_user=ow_object.create_user_id,
         update_user=update_user,
-        create_date=localize_date(ow_object.create_date, source_context.timezone)
+        create_date=_localize_date(ow_object.create_date, source_context.timezone)
         if ow_object.create_date is not None else None,
-        create_date_utc=convert_date_to_utc(
+        create_date_utc=_convert_date_to_utc(
             ow_object.create_date, source_context.timezone
         ) if ow_object.create_date is not None else None,
-        update_date=localize_date(update_date, source_context.timezone)
+        update_date=_localize_date(update_date, source_context.timezone)
         if update_date is not None else None,
-        update_date_utc=convert_date_to_utc(
+        update_date_utc=_convert_date_to_utc(
             update_date, source_context.timezone
         ) if update_date is not None else None,
     )
