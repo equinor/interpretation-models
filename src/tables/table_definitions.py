@@ -79,7 +79,7 @@ COLLECTION_ITEM_ACTIVITY_TABLE = TableSpec(
     foreign_keys=[
         ForeignKeySpec(
             columns=["collection_item_id"],
-            references_table="CollectionItem",
+            references_table=SchemaName.COLLECTION_ITEM,
             references_columns=["id"],
         ),
     ],
