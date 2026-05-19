@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/equinor/interpretation-models/compare/v0.4.1...v0.5.0) (2026-05-19)
+
+
+### Features
+
+* localize source dates ([d30248a](https://github.com/equinor/interpretation-models/commit/d30248a0872114f042b2f5b32d020f2615384940))
+* rename enum key/value for schema table names ([#36](https://github.com/equinor/interpretation-models/issues/36)) ([a9f34dc](https://github.com/equinor/interpretation-models/commit/a9f34dc3ea8dc5134c0f3f36ec5e8632b1700d08))
+* schema name enum value used as single source of truth ([#33](https://github.com/equinor/interpretation-models/issues/33)) ([0b66f3a](https://github.com/equinor/interpretation-models/commit/0b66f3a979303b462aa3a7318edbfa473b4d1f9a))
+
 ## [0.4.1](https://github.com/equinor/interpretation-models/compare/v0.4.0...v0.4.1) (2026-05-12)
 
 
