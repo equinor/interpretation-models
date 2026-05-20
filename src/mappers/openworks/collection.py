@@ -5,7 +5,8 @@ from models import SourceContext
 from models import OWDataType, InterpretationDataType
 from models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
 from models import Collection, CollectionItem
-from mappers.openworks.metadata import source_metadata_from_ow, _id_generate
+from mappers.openworks.metadata import source_metadata_from_ow
+from mappers.helpers import id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 
@@ -27,7 +28,7 @@ def collection_from_ow(
     source_metadata = source_metadata_from_ow(
         ow_object=ow_iset,
         source_context=source_context,
-        id=_id_generate(source_context, ow_iset.interpretation_set_id),
+        id=id_generate(source_context, ow_iset.interpretation_set_id),
         name=ow_iset.interpret_set_name,
     )
 
@@ -36,7 +37,7 @@ def collection_from_ow(
     )
 
     return Collection(
-        id=_id_generate(source_context, ow_iset.interpretation_set_id),
+        id=id_generate(source_context, ow_iset.interpretation_set_id),
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata
@@ -129,9 +130,9 @@ def collection_item_from_ow(
     collection_id = ow_data_object.interpretation_set_id
 
     return CollectionItem(
-        id = _id_generate(source_context, f"Collection:{collection_id}:{resolved_datatype.value}:{resolved_id}"),
-        collection_id=_id_generate(source_context, collection_id),
-        object_id=_id_generate(source_context, resolved_id),
+        id = id_generate(source_context, f"Collection:{collection_id}:{resolved_datatype.value}:{resolved_id}"),
+        collection_id=id_generate(source_context, collection_id),
+        object_id=id_generate(source_context, resolved_id),
         datatype=resolved_datatype,
         source=source_metadata,
         source_ow=source_ow_metadata,

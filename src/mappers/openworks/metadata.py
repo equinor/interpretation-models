@@ -1,9 +1,8 @@
-import datetime
 from typing import TypeAlias
 
+from mappers.helpers import convert_date_to_utc, localize_date
 from models import SourceContext, SourceMetadata
 from models import SourceSystem
-import pytz
 
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
@@ -15,30 +14,6 @@ OWSourceObject: TypeAlias = (
     | SurfaceGrid
     | SurfaceGridProperties
 )
-
-def _id_generate(
-    context: SourceContext, native_id: str
-) -> str:
-    return f"{context.database}:{context.project}:{native_id}"
-
-
-def _localize_date(
-    date: datetime.datetime, timezone: str | None = None
-) -> datetime.datetime:
-    """Attach the given timezone to a naive datetime (or convert an aware one)."""
-    if timezone is None:
-        return date
-    local_tz = pytz.timezone(timezone)
-    return local_tz.localize(date) if date.tzinfo is None else date.astimezone(local_tz)
-
-
-def _convert_date_to_utc(
-    date: datetime.datetime, timezone: str | None = None
-) -> datetime.datetime:
-    if timezone is None:
-        return date
-    local_dt = _localize_date(date, timezone)
-    return local_dt.astimezone(pytz.utc)
 
 
 def source_metadata_from_ow(
@@ -65,14 +40,14 @@ def source_metadata_from_ow(
         remark=ow_object.remark,
         create_user=ow_object.create_user_id,
         update_user=update_user,
-        create_date=_localize_date(ow_object.create_date, source_context.timezone)
+        create_date=localize_date(ow_object.create_date, source_context.timezone)
         if ow_object.create_date is not None else None,
-        create_date_utc=_convert_date_to_utc(
+        create_date_utc=convert_date_to_utc(
             ow_object.create_date, source_context.timezone
         ) if ow_object.create_date is not None else None,
-        update_date=_localize_date(update_date, source_context.timezone)
+        update_date=localize_date(update_date, source_context.timezone)
         if update_date is not None else None,
-        update_date_utc=_convert_date_to_utc(
+        update_date_utc=convert_date_to_utc(
             update_date, source_context.timezone
         ) if update_date is not None else None,
     )

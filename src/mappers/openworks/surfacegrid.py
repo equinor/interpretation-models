@@ -4,7 +4,8 @@ from models import SourceContext
 from models import OWSurfaceGridMetadata, InterpretationProcessingMetadata
 from models import GridGeometry
 from models import SurfaceGridRecord
-from mappers.openworks.metadata import source_metadata_from_ow, _id_generate
+from mappers.openworks.metadata import source_metadata_from_ow
+from mappers.helpers import id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 
@@ -53,7 +54,7 @@ def surfacegrid_from_ow(
     native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
     parent_id = ow_surface.parent_surface_grid_id if isinstance(ow_surface, SurfaceGridProperties) else None
     return SurfaceGridRecord(
-        id=_id_generate(source_context, native_id),
+        id=id_generate(source_context, native_id),
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata,
