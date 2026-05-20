@@ -153,15 +153,15 @@ wheels = [
 
 [[package]]
 name = "dsis-schemas"
-version = "0.0.6"
+version = "0.0.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/37/29/85deee7afd5d864e5ed80c351e75343312642445e7429fb1aac1f827e65d/dsis_schemas-0.0.6.tar.gz", hash = "sha256:97bf8b5d2da91b753c30a6b5c030da065d0731c6e43c86dbb1c17a52fbab1ffa", size = 306436, upload-time = "2025-12-10T12:53:51.622Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/ec/6afb6dfab48bed6df25aab109e97ca629b92050daff000057e2b906318ce/dsis_schemas-0.0.9.tar.gz", hash = "sha256:e40ce9250f5fd455fb9ba267963bb59e7996590de1cd0f8de3d78f3f2c184984", size = 305316, upload-time = "2026-04-17T12:40:02.57Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/03/db979ea5f6aa3316f228518eee6b8b38a3fa63ee6afb62442bac9b053c79/dsis_schemas-0.0.6-py3-none-any.whl", hash = "sha256:0f444aa957b38f5126fa92274c924ad97252c2611630f882b61628241513683f", size = 1135212, upload-time = "2025-12-10T12:53:49.715Z" },
+    { url = "https://files.pythonhosted.org/packages/2f/9f/8978f605638b85c6a554b4d4ac161bf004f60fb4f83392b245a4c1f0b586/dsis_schemas-0.0.9-py3-none-any.whl", hash = "sha256:6980e65778dfa4634ea34596c9c4164d82d42fb2daa548b2600203b297bfc8a4", size = 1130422, upload-time = "2026-04-17T12:40:00.752Z" },
 ]
 
 [[package]]
@@ -184,7 +184,7 @@ wheels = [
 
 [[package]]
 name = "interpretation-models"
-version = "0.2.0"
+version = "0.5.0"
 source = { editable = "." }
 dependencies = [
     { name = "dsis-schemas" },
@@ -202,7 +202,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dsis-schemas", specifier = ">=0.0.6" },
+    { name = "dsis-schemas", specifier = ">=0.0.9" },
     { name = "pydantic", specifier = ">=2,<3" },
     { name = "pytz", specifier = ">=2026.1.post1" },
 ]
