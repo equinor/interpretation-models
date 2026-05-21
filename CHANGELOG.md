@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/equinor/interpretation-models/compare/v0.5.0...v0.5.1) (2026-05-21)
+
+
+### Bug Fixes
+
+* fixed a casing issue for collection.js in github ([#39](https://github.com/equinor/interpretation-models/issues/39)) ([e678cf6](https://github.com/equinor/interpretation-models/commit/e678cf6aa7c58b99c4b269c656fdb53e0cb639ee))
+
 ## [0.5.0](https://github.com/equinor/interpretation-models/compare/v0.4.1...v0.5.0) (2026-05-19)
 
 
