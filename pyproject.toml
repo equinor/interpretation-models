@@ -5,7 +5,7 @@ description = "Interpretation models maintained by the SID team"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "dsis-schemas>=0.0.6",
+    "dsis-schemas>=0.0.9",
     "pydantic>=2, <3",
     "pytz>=2026.1.post1",
 ]

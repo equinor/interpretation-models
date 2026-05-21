@@ -1,15 +1,16 @@
 import json
 import re
 
-from models.metadata import SourceContext
-from models.enums import OWDataType, InterpretationDataType
-from models.metadata import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
-from models.collection import Collection, CollectionItem
-from mappers.metadata_ow import map_ow_source_metadata, id_generate
+from models import SourceContext
+from models import OWDataType, InterpretationDataType
+from models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
+from models import Collection, CollectionItem
+from mappers.openworks.metadata import source_metadata_from_ow
+from mappers.helpers import id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 
-def map_collection(
+def collection_from_ow(
     ow_iset: InterpretationSet,
     source_context: SourceContext,
     processing_metadata: InterpretationProcessingMetadata | None = None,
@@ -24,7 +25,7 @@ def map_collection(
     Returns:
         Collection instance
     """
-    source_metadata = map_ow_source_metadata(
+    source_metadata = source_metadata_from_ow(
         ow_object=ow_iset,
         source_context=source_context,
         id=id_generate(source_context, ow_iset.interpretation_set_id),
@@ -43,7 +44,7 @@ def map_collection(
     )
 
 
-def map_dataobject_datatype(ow_datatype: OWDataType) -> InterpretationDataType:
+def _map_dataobject_datatype(ow_datatype: OWDataType) -> InterpretationDataType:
     mapping = {
         OWDataType.MAP2D: InterpretationDataType.SURFACE_GRID,
         OWDataType.RGRID: InterpretationDataType.SURFACE_GRID,
@@ -71,7 +72,7 @@ def _resolve_map2d_grid_id(native_uid: str | None) -> str:
     return match.group(1).strip() if match and match.group(1).strip() else ""
 
 
-def resolve_id(ow_data_object: ISetDataObject) -> str:
+def _resolve_id(ow_data_object: ISetDataObject) -> str:
     """
     SurfaceGrids in ISetDataObjects can be of type Map2D or RGrid.
     Rgrids are the simpler original grid type, which correponds to a simple grid, with the id set to the data object id.
@@ -92,7 +93,7 @@ def resolve_id(ow_data_object: ISetDataObject) -> str:
     return str(ow_data_object.data_object_id) 
 
 
-def map_collection_item(
+def collection_item_from_ow(
     ow_data_object: ISetDataObject,
     source_context: SourceContext,
     processing_metadata: ProcessingMetadata | None = None,
@@ -109,7 +110,7 @@ def map_collection_item(
         CollectionItem instance
     """
     ow_id: str = str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.data_key
-    source_metadata = map_ow_source_metadata(
+    source_metadata = source_metadata_from_ow(
         ow_object=ow_data_object, 
         source_context=source_context,
         id=ow_id,
@@ -124,8 +125,8 @@ def map_collection_item(
     )
 
     ow_datatype: OWDataType = OWDataType(ow_data_object.data_type) if ow_data_object.data_type in OWDataType._value2member_map_ else OWDataType.OTHERS
-    resolved_datatype: InterpretationDataType = map_dataobject_datatype(ow_datatype)
-    resolved_id = resolve_id(ow_data_object)
+    resolved_datatype: InterpretationDataType = _map_dataobject_datatype(ow_datatype)
+    resolved_id = _resolve_id(ow_data_object)
     collection_id = ow_data_object.interpretation_set_id
 
     return CollectionItem(

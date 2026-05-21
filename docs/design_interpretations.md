@@ -28,7 +28,7 @@ Concrete datatypes inherit from `InterpretationRecord`, directly or through the 
 
 The example below shows the hierarchy.
 It includes example attributes, but the diagram is not guaranteed to comprehensively include all attributes.
-For an updated description of all clses and attributes, see the code in [interpretations.py](../src/models/interpretation.py)
+For an updated description of all clses and attributes, see the code in [interpretation.py](../src/models/interpretations/interpretation.py)
 
 ```mermaid
 classDiagram
@@ -160,23 +160,33 @@ This allows the internal model to be used the same way in lightweight metadata m
 Because this repository maps between models that represent the same concepts in different systems, naming overlap is very likely.
 The internal interpretation models try to reduce ambiguity by using names that are more specific than the raw datatype name (for example SurfaceGridRecord and SurfaceGridInterpretation rather than just SurfaceGrid), but collisions are still possible.
 For example, names such as HorizonInterpretation and FaultInterpretation also have specific meanings in RESQML.
-To keep code readable and unambiguous, the recommended pattern is to import model packages using explicit aliases.
 
-For example:
+The interpretation record models are re-exported at the top level of the ``models`` package, so the simplest import is:
 
-```
-import dsis_model_sdk.models.common as ow_common
-import dsis_model_sdk.models.native as ow_native
-import interpretation_models.models as interp
-import pyetp.resqml_objects.data_types as resqml_types
-
-
-ow_surface: ow_common.SurfaceGrid = dsis_fetch(...)
-surface_record:  interp.SurfaceGridRecord = map_surfacegrid(ow_surface, ...)
-regular_grid_params = resqml_types.RegularGridParameters (shape = (surface_record.ncols, surface_record.nrows), ...)
+```python
+from models import SurfaceGridRecord, SourceContext
 ```
 
-This convention should be followed in the mappers package.
+Source-specific models live in submodules and should be imported with a qualifier to avoid name collisions:
+
+```python
+from models import SurfaceGridRecord
+from models import petrel
+from dsis_model_sdk.models import common as ow
+
+ow_surface: ow.SurfaceGrid = dsis_fetch(...)
+surface_record: SurfaceGridRecord = surfacegrid_from_ow(ow_surface, ...)
+```
+
+When multiple model systems appear in the same file and disambiguation is needed, the ``interpretations`` submodule can also be imported with a qualifier:
+
+```python
+from models import interpretations, petrel
+from dsis_model_sdk.models import common as ow
+
+ow_surface: ow.SurfaceGrid = dsis_fetch(...)
+surface_record: interpretations.SurfaceGridRecord = surfacegrid_from_ow(ow_surface, ...)
+```
 
 ### Metadata Mappers
 

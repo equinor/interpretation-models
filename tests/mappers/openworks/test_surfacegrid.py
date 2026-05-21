@@ -7,14 +7,13 @@ and values match the record.
 
 
 import pytest
-from models.interpretation import SurfaceGridRecord
-from mappers.surfacegrid_ow import map_surfacegrid
-from tables import flatten_record
-
+from mappers import surfacegrid_from_ow
+from models import SurfaceGridRecord
+from tables import flatten_record, flatten_columns
 
 @pytest.fixture
 def surface_record(surfacegrid_obj, source_context, processing_metadata) -> SurfaceGridRecord:
-    return map_surfacegrid(surfacegrid_obj, source_context, processing_metadata)
+    return surfacegrid_from_ow(surfacegrid_obj, source_context, processing_metadata)
 
 
 class TestMapSurfacegridContract:
@@ -52,8 +51,6 @@ class TestFlattenSurfaceGridRecord:
 
     def test_all_model_fields_present(self, flat):
         """Every column from the model should appear as a key in the flattened dict."""
-        from tables import flatten_columns
-
         expected_keys = {col.name for col in flatten_columns(SurfaceGridRecord)}
         actual_keys = set(flat.keys())
         assert expected_keys == actual_keys
@@ -61,10 +58,10 @@ class TestFlattenSurfaceGridRecord:
     def test_flat_values_match_record(self, flat):
         """All flattened values must match the expected contract."""
         expected = {
-            "id": "BG4FROST:VOLVE_PUBLIC:2636",
+            "id": "SOME_DB:SOME_PROJECT:2636",
             "source_system": "OpenWorks R5000",
-            "source_database": "BG4FROST",
-            "source_project": "VOLVE_PUBLIC",
+            "source_database": "SOME_DB",
+            "source_project": "SOME_PROJECT",
             "source_id": "2636",
             "source_name": "ihdTHugin13flt3",
             "source_remark": None,
@@ -80,11 +77,11 @@ class TestFlattenSurfaceGridRecord:
             "source_petrel_business_project": None,
             "source_petrel_data_status": None,
             "source_petrel_confidence_factor": None,
-            "processing_create_date": None,
-            "processing_update_date": None,
-            "processing_file_available": None,
+            "processing_create_date": "2025-01-01T12:00:00",
+            "processing_update_date": "2025-07-01T12:00:00",
+            "processing_file_available": True,
             "processing_file_error_message": None,
-            "processing_file_path": None,
+            "processing_file_path": "/path/to/file",
             "extent_points": None,
             "crs": "ST_ED50_UTM31N_P23031_T1133",
             "z_domain": "TVDSS",

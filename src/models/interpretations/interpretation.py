@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from models.extent import Extent
-from models.metadata import SourceMetadata, InterpretationProcessingMetadata, OWMetadata, OWSurfaceGridMetadata, PetrelMetadata
+from models.interpretations.extent import Extent
+from models.interpretations.metadata import SourceMetadata, InterpretationProcessingMetadata, OWMetadata, OWSurfaceGridMetadata, PetrelMetadata
 
 
 class InterpretationRecord(BaseModel):
