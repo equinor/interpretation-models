@@ -37,7 +37,7 @@ def collection_from_ow(
     )
 
     return Collection(
-        id=id_generate(source_context, ow_iset.interpretation_set_id),
+        id=id_generate(source_context, f"Collection:{ow_iset.interpretation_set_id}"),
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata
@@ -131,8 +131,8 @@ def collection_item_from_ow(
 
     return CollectionItem(
         id = id_generate(source_context, f"Collection:{collection_id}:{resolved_datatype.value}:{resolved_id}"),
-        collection_id=id_generate(source_context, collection_id),
-        object_id=id_generate(source_context, resolved_id),
+        collection_id=id_generate(source_context, f"Collection:{collection_id}"),
+        object_id=id_generate(source_context, f"{resolved_datatype.value}:{resolved_id}"),
         datatype=resolved_datatype,
         source=source_metadata,
         source_ow=source_ow_metadata,
