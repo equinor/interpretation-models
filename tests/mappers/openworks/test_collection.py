@@ -36,7 +36,7 @@ def test_collection_flat_values(ow_interpretation_set, source_context):
         "source_system": "OpenWorks R5000",
         "source_database": "SOME_DB",
         "source_project": "SOME_PROJECT",
-        "source_id": "SOME_DB:SOME_PROJECT:100",
+        "source_id": "100",
         "source_name": "Volve objects",
         "source_remark": "Test collection",
         "source_create_user": "USER1",

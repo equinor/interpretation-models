@@ -28,7 +28,7 @@ def collection_from_ow(
     source_metadata = source_metadata_from_ow(
         ow_object=ow_iset,
         source_context=source_context,
-        id=id_generate(source_context, ow_iset.interpretation_set_id),
+        id=ow_iset.interpretation_set_id,
         name=ow_iset.interpret_set_name,
     )
 
