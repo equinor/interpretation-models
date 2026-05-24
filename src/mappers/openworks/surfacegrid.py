@@ -25,10 +25,13 @@ def surfacegrid_from_ow(
     Returns:
         SurfaceGridRecord instance
     """
+    # id is nullable, so we try to iterate through other unique attributes in case it is null
+    native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
+
     source_metadata = source_metadata_from_ow(
         ow_object=ow_surface,
         source_context=source_context,
-        id=ow_surface.native_uid,
+        id=native_id,
         name=ow_surface.map_data_set_name,
     )
 
@@ -51,8 +54,7 @@ def surfacegrid_from_ow(
         left_handed=True,
     )
 
-    # id is nullable, so we try to iterate through other unique attributes in case it is null
-    native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
+
     parent_id = ow_surface.parent_surface_grid_id if isinstance(ow_surface, SurfaceGridProperties) else None
     return SurfaceGridRecord(
         id=id_generate(source_context, f"{InterpretationDataType.SURFACE_GRID.value}:{native_id}"),
