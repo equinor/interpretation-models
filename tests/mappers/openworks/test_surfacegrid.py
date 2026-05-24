@@ -58,7 +58,7 @@ class TestFlattenSurfaceGridRecord:
     def test_flat_values_match_record(self, flat):
         """All flattened values must match the expected contract."""
         expected = {
-            "id": "SOME_DB:SOME_PROJECT:2636",
+            "id": "SOME_DB:SOME_PROJECT:SurfaceGrid:2636",
             "source_system": "OpenWorks R5000",
             "source_database": "SOME_DB",
             "source_project": "SOME_PROJECT",

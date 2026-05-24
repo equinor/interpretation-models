@@ -1,0 +1,45 @@
+{
+  "type": "struct",
+  "fields": [
+    {
+      "name": "event_date",
+      "type": "datetime",
+      "nullable": false,
+      "metadata": {
+        "description": "Timestamp of the activity event"
+      }
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "nullable": false,
+      "metadata": {
+        "description": "Type of update. Possible values: ObjectUpdate, CollectionInsert, CollectionRemove"
+      }
+    },
+    {
+      "name": "collection_id",
+      "type": "string",
+      "nullable": true,
+      "metadata": {
+        "description": "Identifier of the affected collection"
+      }
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "nullable": true,
+      "metadata": {
+        "description": "Identifier of the object inserted, removed or updated"
+      }
+    },
+    {
+      "name": "datatype",
+      "type": "string",
+      "nullable": true,
+      "metadata": {
+        "description": "Datatype of the object affected by the event"
+      }
+    }
+  ]
+}

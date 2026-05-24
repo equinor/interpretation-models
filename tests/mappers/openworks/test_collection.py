@@ -32,11 +32,11 @@ def test_collection_flat_values(ow_interpretation_set, source_context):
     flat = flatten_record(coll)
 
     expected = {
-        "id": "SOME_DB:SOME_PROJECT:100",
+        "id": "SOME_DB:SOME_PROJECT:Collection:100",
         "source_system": "OpenWorks R5000",
         "source_database": "SOME_DB",
         "source_project": "SOME_PROJECT",
-        "source_id": "SOME_DB:SOME_PROJECT:100",
+        "source_id": "100",
         "source_name": "Volve objects",
         "source_remark": "Test collection",
         "source_create_user": "USER1",
@@ -87,8 +87,8 @@ def test_map2d_item_flat_values(ow_isetdataobject_map2d, source_context):
 
     expected = {
         "id": "SOME_DB:SOME_PROJECT:Collection:100:SurfaceGrid:1357",
-        "collection_id": "SOME_DB:SOME_PROJECT:100",
-        "object_id": "SOME_DB:SOME_PROJECT:1357",
+        "collection_id": "SOME_DB:SOME_PROJECT:Collection:100",
+        "object_id": "SOME_DB:SOME_PROJECT:SurfaceGrid:1357",
         "datatype": "SurfaceGrid",
         "source_system": "OpenWorks R5000",
         "source_database": "SOME_DB",
@@ -118,8 +118,8 @@ def test_rgrid_item_flat_values(ow_isetdataobject_rgrid, source_context):
 
     expected = {
         "id": "SOME_DB:SOME_PROJECT:Collection:100:SurfaceGrid:42",
-        "collection_id": "SOME_DB:SOME_PROJECT:100",
-        "object_id": "SOME_DB:SOME_PROJECT:42",
+        "collection_id": "SOME_DB:SOME_PROJECT:Collection:100",
+        "object_id": "SOME_DB:SOME_PROJECT:SurfaceGrid:42",
         "datatype": "SurfaceGrid",
         "source_system": "OpenWorks R5000",
         "source_database": "SOME_DB",
