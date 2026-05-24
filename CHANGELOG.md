@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.6.0](https://github.com/equinor/interpretation-models/compare/v0.5.1...v0.6.0) (2026-05-24)
+
+
+### Features
+
+* add type prefix to ids in SurfaceGrid and Collection ([c08c46c](https://github.com/equinor/interpretation-models/commit/c08c46caceb5549f7fe0488cf89763a260e246a4))
+* link activity directly to collection and object ([693deca](https://github.com/equinor/interpretation-models/commit/693deca27beaecbdb60fbf617cf8cd4d3a7214a4))
+* restructure models, mappers, tests, and expose a public API for models and mappers ([0f899b0](https://github.com/equinor/interpretation-models/commit/0f899b01ed47c9c05b2cfc687f697c64e0519eed))
+
+
+### Bug Fixes
+
+* consistency in source id if native_uid is null from DSIS ([#43](https://github.com/equinor/interpretation-models/issues/43)) ([4946dba](https://github.com/equinor/interpretation-models/commit/4946dba5a9839e23710c3b6238579ffa3d85da8c))
+* source id for collection should be OW native id ([0e51bd4](https://github.com/equinor/interpretation-models/commit/0e51bd478c30d9e12e3b1dd40779010e77fb8a40))
+
 ## [0.5.1](https://github.com/equinor/interpretation-models/compare/v0.5.0...v0.5.1) (2026-05-21)
 
 
