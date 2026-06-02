@@ -5,8 +5,8 @@ erDiagram
         boolean processing_file_available
         string processing_file_error_message
         string processing_file_path
-        datetime processing_create_date
-        datetime processing_update_date
+        datetime processing_create_date_utc
+        datetime processing_update_date_utc
         string source_system
         string source_database
         string source_project
@@ -15,9 +15,7 @@ erDiagram
         string source_remark
         string source_create_user
         string source_update_user
-        datetime source_create_date
         datetime source_create_date_utc
-        datetime source_update_date
         datetime source_update_date_utc
         string source_ow_geo_name
         string source_ow_geo_type
@@ -45,8 +43,8 @@ erDiagram
 
     Collection {
         string id PK
-        datetime processing_create_date
-        datetime processing_update_date
+        datetime processing_create_date_utc
+        datetime processing_update_date_utc
         string source_system
         string source_database
         string source_project
@@ -55,9 +53,7 @@ erDiagram
         string source_remark
         string source_create_user
         string source_update_user
-        datetime source_create_date
         datetime source_create_date_utc
-        datetime source_update_date
         datetime source_update_date_utc
         string source_ow_field_prospect_name
     }
@@ -75,16 +71,14 @@ erDiagram
         string source_remark
         string source_create_user
         string source_update_user
-        datetime source_create_date
         datetime source_create_date_utc
-        datetime source_update_date
         datetime source_update_date_utc
         string source_ow_data_type
         string source_ow_data_key
         string source_ow_interpretation_set_id
         int source_ow_iset_folder_id
-        datetime processing_create_date
-        datetime processing_update_date
+        datetime processing_create_date_utc
+        datetime processing_update_date_utc
     }
 
     CollectionActivity {
