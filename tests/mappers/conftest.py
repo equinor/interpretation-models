@@ -22,6 +22,6 @@ def processing_metadata() -> InterpretationProcessingMetadata:
         file_available=True,
         file_error_message=None,
         file_path="/path/to/file",
-        create_date=datetime(2025, 1, 1, 12, 0, 0),
-        update_date=datetime(2025, 7, 1, 12, 0, 0),
+        create_date_utc=datetime(2025, 1, 1, 12, 0, 0),
+        update_date_utc=datetime(2025, 7, 1, 12, 0, 0),
     )

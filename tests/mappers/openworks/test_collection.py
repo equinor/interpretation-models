@@ -41,13 +41,11 @@ def test_collection_flat_values(ow_interpretation_set, source_context):
         "source_remark": "Test collection",
         "source_create_user": "USER1",
         "source_update_user": "USER2",
-        "source_create_date": "2020-03-15T10:30:00+01:00",
         "source_create_date_utc": "2020-03-15T09:30:00Z",
-        "source_update_date": "2021-06-20T14:00:00+02:00",
         "source_update_date_utc": "2021-06-20T12:00:00Z",
         "source_ow_field_prospect_name": "Volve",
-        "processing_create_date": None,
-        "processing_update_date": None,
+        "processing_create_date_utc": None,
+        "processing_update_date_utc": None,
     }
     assert flat == expected
 
@@ -98,16 +96,14 @@ def test_map2d_item_flat_values(ow_isetdataobject_map2d, source_context):
         "source_remark": "Main horizon",
         "source_create_user": "USER1",
         "source_update_user": "USER2",
-        "source_create_date": "2020-03-15T10:30:00+01:00",
         "source_create_date_utc": "2020-03-15T09:30:00Z",
-        "source_update_date": "2021-06-20T14:00:00+02:00",
         "source_update_date_utc": "2021-06-20T12:00:00Z",
         "source_ow_data_type": "Map2D",
         "source_ow_data_key":"CntrParmName=contour;gridId=1357;interpreter=INTERP;",
         "source_ow_interpretation_set_id": '100',
         "source_ow_iset_folder_id": 201,
-        "processing_create_date": None,
-        "processing_update_date": None,
+        "processing_create_date_utc": None,
+        "processing_update_date_utc": None,
     }
     assert flat == expected
 
@@ -129,15 +125,13 @@ def test_rgrid_item_flat_values(ow_isetdataobject_rgrid, source_context):
         "source_remark": None,
         "source_create_user": "USER1",
         "source_update_user": "USER1",
-        "source_create_date": "2020-05-10T08:00:00+02:00",
         "source_create_date_utc": "2020-05-10T06:00:00Z",
-        "source_update_date": "2020-05-10T08:00:00+02:00",
         "source_update_date_utc": "2020-05-10T06:00:00Z",
         "source_ow_data_type": "Rgrid",
         "source_ow_data_key": "attribute=Depth;dataSource=IHD;geoName=Draupne Fm.;geoType=SURFACE;mapDataSetName=draupneDepth;",
         "source_ow_interpretation_set_id": '100',
         "source_ow_iset_folder_id": 201,
-        "processing_create_date": None,
-        "processing_update_date": None,
+        "processing_create_date_utc": None,
+        "processing_update_date_utc": None,
     }
     assert flat == expected
