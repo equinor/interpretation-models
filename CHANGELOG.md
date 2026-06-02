@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/equinor/interpretation-models/compare/v0.6.0...v0.7.0) (2026-06-02)
+
+
+### Features
+
+* remove local timestamp columns ([#45](https://github.com/equinor/interpretation-models/issues/45)) ([8e29857](https://github.com/equinor/interpretation-models/commit/8e298575a574bc07615d67778e80cc081af56c6a))
+
 ## [0.6.0](https://github.com/equinor/interpretation-models/compare/v0.5.1...v0.6.0) (2026-05-24)
 
 
