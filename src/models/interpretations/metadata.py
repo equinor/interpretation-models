@@ -4,8 +4,8 @@ from models.enums import SourceSystem
 
 
 class ProcessingMetadata(BaseModel):
-    create_date: datetime | None = None
-    update_date: datetime | None = None
+    create_date_utc: datetime | None = None
+    update_date_utc: datetime | None = None
 
 
 class InterpretationProcessingMetadata(ProcessingMetadata):
@@ -41,9 +41,7 @@ class SourceMetadata(BaseModel):
     remark: str | None = None
     create_user: str | None = None
     update_user: str | None = None
-    create_date: datetime | None = None
     create_date_utc: datetime | None = None
-    update_date: datetime | None = None
     update_date_utc: datetime | None = None
 
 
