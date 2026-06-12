@@ -36,6 +36,7 @@ def surfacegrid_from_ow(
     )
 
     source_ow_metadata = OWSurfaceGridMetadata(
+        data_source=ow_surface.data_source,
         geo_name=ow_surface.geo_name,
         geo_type=ow_surface.geo_type,
         attribute=ow_surface.attribute,
@@ -61,6 +62,7 @@ def surfacegrid_from_ow(
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata,
+        grid_ntotal=geometry.ncol * geometry.nrow if geometry.ncol is not None and geometry.nrow is not None else None,
         geometry=geometry,
         crs=ow_surface.crs or source_context.crs,
         z_domain=ow_surface.data_domain,

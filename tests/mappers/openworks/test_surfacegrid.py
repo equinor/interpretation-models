@@ -69,6 +69,7 @@ class TestFlattenSurfaceGridRecord:
             "source_update_user": "IHD",
             "source_create_date_utc": "2013-11-15T07:20:49Z",
             "source_update_date_utc": "2013-11-15T07:20:49Z",
+            "source_ow_data_source": "IHD",
             "source_ow_geo_name": "UNKNOWN",
             "source_ow_geo_type": "SURFACE",
             "source_ow_attribute": "DEPTH",
@@ -92,10 +93,8 @@ class TestFlattenSurfaceGridRecord:
             "geometry_yinc": 12.0,
             "geometry_rotation": 0.0,
             "geometry_left_handed": True,
-            "grid_null_value": None,
-            "grid_ntotal": None,
+            "grid_ntotal": 552891,
             "grid_nnan": None,
-            "parent_surface_id": None,
         }
         assert flat == expected
 

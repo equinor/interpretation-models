@@ -34,6 +34,7 @@ def collection_from_ow(
 
     source_ow_metadata = OWCollectionMetadata(
         field_prospect_name=ow_iset.field_prospect_name,
+        data_source=ow_iset.data_source
     )
 
     return Collection(

@@ -52,12 +52,14 @@ class OWMetadata(BaseModel):
 
 class OWSurfaceGridMetadata(OWMetadata):
     """OpenWorks metadata specific to surface grids."""
+    data_source: str | None = None
     geo_name: str | None = None
     geo_type: str | None = None
     attribute: str | None = None
 
 
 class OWCollectionMetadata(OWMetadata):
+    data_source: str | None = None
     field_prospect_name: str | None = None
 
 

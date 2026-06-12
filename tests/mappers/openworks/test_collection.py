@@ -43,6 +43,7 @@ def test_collection_flat_values(ow_interpretation_set, source_context):
         "source_update_user": "USER2",
         "source_create_date_utc": "2020-03-15T09:30:00Z",
         "source_update_date_utc": "2021-06-20T12:00:00Z",
+        'source_ow_data_source': "IHD",
         "source_ow_field_prospect_name": "Volve",
         "processing_create_date_utc": None,
         "processing_update_date_utc": None,

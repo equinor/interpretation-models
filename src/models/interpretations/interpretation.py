@@ -28,7 +28,6 @@ class GridGeometry(BaseModel):
 
 class GriddedInterpretationRecord(InterpretationRecord):
     geometry: GridGeometry | None = None
-    grid_null_value: float | None = None
     grid_ntotal: int | None = None
     grid_nnan: int | None = None
 
@@ -52,4 +51,4 @@ class SurfaceGridRecord(GriddedInterpretationRecord):
     property is defined on.
     """
     source_ow: OWSurfaceGridMetadata | None = None
-    parent_surface_id: str | None = None
+
