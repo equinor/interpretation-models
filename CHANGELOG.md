@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/equinor/interpretation-models/compare/v0.7.0...v0.7.1) (2026-06-12)
+
+
+### Documentation
+
+* documentation for executing the schema generator tool ([#47](https://github.com/equinor/interpretation-models/issues/47)) ([805b328](https://github.com/equinor/interpretation-models/commit/805b328421bafca70294929e644e869225211476))
+
 ## [0.7.0](https://github.com/equinor/interpretation-models/compare/v0.6.0...v0.7.0) (2026-06-02)
 
 
