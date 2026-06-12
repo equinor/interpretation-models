@@ -1,7 +1,7 @@
 import datetime
 
 from mappers.helpers import convert_date_to_utc
-from mappers.openworks.metadata import source_metadata_from_ow
+from mappers.openworks import metadata
 from models import SourceContext, SourceMetadata
 from models import SourceSystem
 from dsis_model_sdk.models.native import InterpretationSet
@@ -45,7 +45,7 @@ def test_map_ow_source_metadata_update_date_falls_back_to_create_date():
     )
     source_context = SourceContext(database="DB", project="PROJ", timezone=timezone)
 
-    result = source_metadata_from_ow(ow_iset, source_context, id="uid1", name="Test ISet")
+    result = metadata.source_metadata_from_ow(ow_iset, source_context, id="uid1", name="Test ISet")
 
     assert result.update_user == "creator"
     assert result.update_date_utc == result.create_date_utc

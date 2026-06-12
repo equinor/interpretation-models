@@ -16,7 +16,8 @@ from tables import (
     model_to_tablespec,
     tablespec_to_json,
 )
-from tables.table_definitions import MODEL_TABLES, SCHEMA_VERSION, SUPPORT_TABLES
+from tables.table_definitions import MODEL_TABLES, SUPPORT_TABLES
+from tables.schema_versioning import SCHEMA_VERSION
 
 
 def generate_table_schemas(

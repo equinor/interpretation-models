@@ -36,9 +36,7 @@ classDiagram
         source
         processing
         extent
-        crs
         z_domain
-        z_unit
     }
 
     class GriddedInterpretationRecord {

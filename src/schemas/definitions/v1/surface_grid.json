@@ -56,19 +56,7 @@
       "metadata": {}
     },
     {
-      "name": "source_create_date",
-      "type": "timestamp",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
       "name": "source_create_date_utc",
-      "type": "timestamp",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
-      "name": "source_update_date",
       "type": "timestamp",
       "nullable": true,
       "metadata": {}
@@ -76,6 +64,30 @@
     {
       "name": "source_update_date_utc",
       "type": "timestamp",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "source_crs",
+      "type": "string",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "source_z_domain",
+      "type": "string",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "source_z_unit",
+      "type": "string",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "source_ow_data_source",
+      "type": "string",
       "nullable": true,
       "metadata": {}
     },
@@ -116,13 +128,13 @@
       "metadata": {}
     },
     {
-      "name": "processing_create_date",
+      "name": "processing_create_date_utc",
       "type": "timestamp",
       "nullable": true,
       "metadata": {}
     },
     {
-      "name": "processing_update_date",
+      "name": "processing_update_date_utc",
       "type": "timestamp",
       "nullable": true,
       "metadata": {}
@@ -152,19 +164,7 @@
       "metadata": {}
     },
     {
-      "name": "crs",
-      "type": "string",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
       "name": "z_domain",
-      "type": "string",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
-      "name": "z_unit",
       "type": "string",
       "nullable": true,
       "metadata": {}
@@ -218,12 +218,6 @@
       "metadata": {}
     },
     {
-      "name": "grid_null_value",
-      "type": "double",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
       "name": "grid_ntotal",
       "type": "integer",
       "nullable": true,
@@ -232,12 +226,6 @@
     {
       "name": "grid_nnan",
       "type": "integer",
-      "nullable": true,
-      "metadata": {}
-    },
-    {
-      "name": "parent_surface_id",
-      "type": "string",
       "nullable": true,
       "metadata": {}
     }

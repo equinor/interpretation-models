@@ -17,6 +17,10 @@ erDiagram
         string source_update_user
         datetime source_create_date_utc
         datetime source_update_date_utc
+        string source_crs
+        string source_z_domain
+        string source_z_unit
+        string source_ow_data_source
         string source_ow_geo_name
         string source_ow_geo_type
         string source_ow_attribute
@@ -24,9 +28,6 @@ erDiagram
         string source_petrel_data_status
         string source_petrel_confidence_factor
         json extent_points
-        string crs
-        string z_domain
-        string z_unit
         integer geometry_ncol
         integer geometry_nrow
         float geometry_xori
@@ -35,10 +36,8 @@ erDiagram
         float geometry_yinc
         float geometry_rotation
         boolean geometry_left_handed
-        float grid_null_value
         integer grid_ntotal
         integer grid_nnan
-        string parent_surface_id
     }
 
     Collection {
@@ -55,6 +54,7 @@ erDiagram
         string source_update_user
         datetime source_create_date_utc
         datetime source_update_date_utc
+        string source_ow_data_source
         string source_ow_field_prospect_name
     }
 
