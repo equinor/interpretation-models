@@ -45,6 +45,12 @@ class SourceMetadata(BaseModel):
     update_date_utc: datetime | None = None
 
 
+class InterpretationSourceMetadata(SourceMetadata):
+    crs: str | None = None
+    z_domain: str | None = None
+    z_unit: str | None = None
+
+
 class OWMetadata(BaseModel):
     """Base class for OpenWorks source metadata. Subclassed for each interpretation type."""
     pass
@@ -52,12 +58,14 @@ class OWMetadata(BaseModel):
 
 class OWSurfaceGridMetadata(OWMetadata):
     """OpenWorks metadata specific to surface grids."""
+    data_source: str | None = None
     geo_name: str | None = None
     geo_type: str | None = None
     attribute: str | None = None
 
 
 class OWCollectionMetadata(OWMetadata):
+    data_source: str | None = None
     field_prospect_name: str | None = None
 
 

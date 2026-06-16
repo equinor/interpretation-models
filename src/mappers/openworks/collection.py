@@ -5,7 +5,7 @@ from models import SourceContext
 from models import OWDataType, InterpretationDataType
 from models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
 from models import Collection, CollectionItem
-from mappers.openworks.metadata import source_metadata_from_ow
+from mappers.openworks import metadata
 from mappers.helpers import id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
@@ -25,7 +25,7 @@ def collection_from_ow(
     Returns:
         Collection instance
     """
-    source_metadata = source_metadata_from_ow(
+    source_metadata = metadata.source_metadata_from_ow(
         ow_object=ow_iset,
         source_context=source_context,
         id=ow_iset.interpretation_set_id,
@@ -34,6 +34,7 @@ def collection_from_ow(
 
     source_ow_metadata = OWCollectionMetadata(
         field_prospect_name=ow_iset.field_prospect_name,
+        data_source=ow_iset.data_source
     )
 
     return Collection(
@@ -110,7 +111,7 @@ def collection_item_from_ow(
         CollectionItem instance
     """
     ow_id: str = str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.data_key
-    source_metadata = source_metadata_from_ow(
+    source_metadata = metadata.source_metadata_from_ow(
         ow_object=ow_data_object, 
         source_context=source_context,
         id=ow_id,

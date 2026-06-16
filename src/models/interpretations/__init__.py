@@ -5,6 +5,7 @@ from models.interpretations.metadata import (
     InterpretationProcessingMetadata,
     SourceContext,
     SourceMetadata,
+    InterpretationSourceMetadata,
     OWMetadata,
     OWSurfaceGridMetadata,
     OWCollectionMetadata,

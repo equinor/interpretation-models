@@ -1,7 +1,7 @@
 from typing import TypeAlias
 
 from mappers.helpers import convert_date_to_utc
-from models import SourceContext, SourceMetadata
+from models import SourceContext, SourceMetadata, InterpretationSourceMetadata
 from models import SourceSystem
 
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
@@ -31,6 +31,7 @@ def source_metadata_from_ow(
     """
     update_date = ow_object.update_date or ow_object.create_date
     update_user = ow_object.update_user_id or ow_object.create_user_id
+    
     return SourceMetadata(
         system=SourceSystem.OPENWORKS,
         database=source_context.database,
@@ -46,4 +47,23 @@ def source_metadata_from_ow(
         update_date_utc=convert_date_to_utc(
             update_date, source_context.timezone
         ) if update_date is not None else None,
+    )
+
+def interpretation_source_metadata_from_ow(
+    ow_object: OWSourceObject,
+    source_context: SourceContext,
+    *,
+    id: str | None = None,
+    name: str | None = None,
+    crs: str | None = None,
+    z_domain: str | None = None,
+    z_unit: str | None = None,
+) -> InterpretationSourceMetadata:
+    """Map common OW metadata fields to InterpretationSourceMetadata, including interpretation-specific fields."""
+    base_metadata = source_metadata_from_ow(ow_object, source_context, id=id, name=name)
+    return InterpretationSourceMetadata(
+        **base_metadata.model_dump(),
+        crs=crs,
+        z_domain=z_domain,
+        z_unit=z_unit,
     )
