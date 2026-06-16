@@ -10,7 +10,7 @@ When a database changes has been performed and a new schema update is necessary 
 
 ### Schema generator
 
-The variable `SCHEMA_VERSION` in the source file `table_definitions.py` will determine the schema version in use.
+The variable `SCHEMA_VERSION` in the source file `schema_versioning.py` will determine the schema version in use.
 
 #### Create a new schema
 

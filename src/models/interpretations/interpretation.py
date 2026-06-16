@@ -1,18 +1,16 @@
 from pydantic import BaseModel
 from models.interpretations.extent import Extent
-from models.interpretations.metadata import SourceMetadata, InterpretationProcessingMetadata, OWMetadata, OWSurfaceGridMetadata, PetrelMetadata
+from models.interpretations.metadata import InterpretationSourceMetadata, InterpretationProcessingMetadata, OWMetadata, OWSurfaceGridMetadata, PetrelMetadata
 
 
 class InterpretationRecord(BaseModel):
     id: str
-    source: SourceMetadata | None = None
+    source: InterpretationSourceMetadata | None = None
     source_ow: OWMetadata | None = None
     source_petrel: PetrelMetadata | None = None
     processing: InterpretationProcessingMetadata | None = None
     extent: Extent | None = None
-    crs: str | None = None
     z_domain: str | None = None
-    z_unit: str | None = None
 
 
 class GridGeometry(BaseModel):
@@ -28,7 +26,6 @@ class GridGeometry(BaseModel):
 
 class GriddedInterpretationRecord(InterpretationRecord):
     geometry: GridGeometry | None = None
-    grid_null_value: float | None = None
     grid_ntotal: int | None = None
     grid_nnan: int | None = None
 
@@ -52,4 +49,4 @@ class SurfaceGridRecord(GriddedInterpretationRecord):
     property is defined on.
     """
     source_ow: OWSurfaceGridMetadata | None = None
-    parent_surface_id: str | None = None
+

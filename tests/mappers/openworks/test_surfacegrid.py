@@ -69,6 +69,7 @@ class TestFlattenSurfaceGridRecord:
             "source_update_user": "IHD",
             "source_create_date_utc": "2013-11-15T07:20:49Z",
             "source_update_date_utc": "2013-11-15T07:20:49Z",
+            "source_ow_data_source": "IHD",
             "source_ow_geo_name": "UNKNOWN",
             "source_ow_geo_type": "SURFACE",
             "source_ow_attribute": "DEPTH",
@@ -81,9 +82,9 @@ class TestFlattenSurfaceGridRecord:
             "processing_file_error_message": None,
             "processing_file_path": "/path/to/file",
             "extent_points": None,
-            "crs": "ST_ED50_UTM31N_P23031_T1133",
-            "z_domain": "TVDSS",
-            "z_unit": "meters",
+            "source_crs": "ST_ED50_UTM31N_P23031_T1133",
+            "source_z_domain": "TVDSS",
+            "source_z_unit": "meters",
             "geometry_ncol": 879,
             "geometry_nrow": 629,
             "geometry_xori": 429588.0,
@@ -92,10 +93,9 @@ class TestFlattenSurfaceGridRecord:
             "geometry_yinc": 12.0,
             "geometry_rotation": 0.0,
             "geometry_left_handed": True,
-            "grid_null_value": None,
-            "grid_ntotal": None,
+            "grid_ntotal": 552891,
             "grid_nnan": None,
-            "parent_surface_id": None,
+            "z_domain": "DEPTH"
         }
         assert flat == expected
 
