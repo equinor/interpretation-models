@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
-from models.enums import SourceSystem
+from interpretation_models.models.enums import SourceSystem
 
 
 class ProcessingMetadata(BaseModel):

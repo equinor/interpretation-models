@@ -8,10 +8,10 @@ Primary keys and foreign keys are relational concerns and are therefore defined 
 not on the Pydantic model objects themselves.
 """
 
-from models import SurfaceGridRecord
-from models import Collection, CollectionItem
-from schemas.registry import SchemaName
-from tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
+from interpretation_models.models import SurfaceGridRecord
+from interpretation_models.models import Collection, CollectionItem
+from interpretation_models.schemas.registry import SchemaName
+from interpretation_models.tables.tablespec import ModelTableDef, TableSpec, ColumnSpec, ForeignKeySpec
 
 # ---------------------------------------------------------------------------
 # Model tables

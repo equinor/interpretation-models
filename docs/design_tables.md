@@ -89,7 +89,7 @@ The generation process should:
 
 This keeps the semantic model as the source of truth for record-like tables while still allowing the physical table name and a few physical details to be explicit.
 
-Support tables TableSpecs are defined manually in [src/tables/table_definitions.py](../../src/tables/table_definitions.py)
+Support tables TableSpecs are defined manually in [src/interpretation_models/tables/table_definitions.py](../../src/interpretation_models/tables/table_definitions.py)
 Primary keys and foreign keys for model tables are also defined explicitly in the same file, together with custom table names and descriptions.
 The concepts of PK and FK are exclusive to the relational model, not being defined by Pydantic model objects.
 
@@ -100,7 +100,7 @@ To generate or regenerate all table schemas:
 
 1. If adding tables or updating PKs/FKs, edit `MODEL_TABLES` in `generate_schemas.py` to define which models to serialize and their keys.
 2. If there are new anually generated helper tables, edit `SUPPORT_TABLES` to add them
-3. Run: `python -m tables.generate_schemas`
+3. Run: `python -m interpretation_models.tables.generate_schemas`
 
 A serialised snapshot of the generated table specs is stored under `/schemas` in the root of the repository, with one JSON file per table.
 

@@ -7,8 +7,8 @@ description: "Generate and validate PySpark table schemas from Pydantic models. 
 
 ## When to Use
 
-- After modifying Pydantic models in `src/models/`
-- After changing table definitions in `src/tables/table_definitions.py`
+- After modifying Pydantic models in `src/interpretation_models/models/`
+- After changing table definitions in `src/interpretation_models/tables/table_definitions.py`
 - To validate that generated JSON schemas are valid PySpark StructType definitions
 - When adding a new model-backed table
 
@@ -17,10 +17,10 @@ description: "Generate and validate PySpark table schemas from Pydantic models. 
 Run from the project root:
 
 ```bash
-PYTHONPATH=src python -m tables.generate_schemas
+python -m interpretation_models.tables.generate_schemas
 ```
 
-This reads `MODEL_TABLES` and `SUPPORT_TABLES` from `src/tables/table_definitions.py` and writes versioned JSON files to `src/schemas/definitions/`.
+This reads `MODEL_TABLES` and `SUPPORT_TABLES` from `src/interpretation_models/tables/table_definitions.py` and writes versioned JSON files to `src/interpretation_models/schemas/definitions/`.
 
 ## Validate with PySpark
 
@@ -33,7 +33,7 @@ import json
 from pathlib import Path
 from pyspark.sql.types import StructType
 
-for f in sorted(Path("src/schemas/definitions").glob("*.json")):
+for f in sorted(Path("src/interpretation_models/schemas/definitions").glob("*.json")):
     data = json.loads(f.read_text())
     schema = StructType.fromJson(data)
     print(f"{f.name}: {len(schema.fields)} fields")
@@ -42,7 +42,7 @@ for f in sorted(Path("src/schemas/definitions").glob("*.json")):
 Or using the `SchemaRegistry`:
 
 ```python
-from schemas import SchemaRegistry, SchemaName
+from interpretation_models.schemas import SchemaRegistry, SchemaName
 from pyspark.sql.types import StructType
 
 registry = SchemaRegistry()
@@ -67,7 +67,7 @@ spark.stop()
 
 ## Adding a New Table
 
-1. Create or update the Pydantic model in `src/models/`
-2. Add a `ModelTableDef` entry in `src/tables/table_definitions.py`
+1. Create or update the Pydantic model in `src/interpretation_models/models/`
+2. Add a `ModelTableDef` entry in `src/interpretation_models/tables/table_definitions.py`
 3. Append it to the `MODEL_TABLES` list
 4. Regenerate and validate

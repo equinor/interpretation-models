@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from models import InterpretationProcessingMetadata, SourceContext
+from interpretation_models.models import InterpretationProcessingMetadata, SourceContext
 
 # ---------------------------------------------------------------------------
 # Shared metadata fixtures for mapper tests

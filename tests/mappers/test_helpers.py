@@ -1,6 +1,6 @@
 import datetime
 
-from mappers.helpers import convert_date_to_utc, id_generate, localize_date
+from interpretation_models.mappers.helpers import convert_date_to_utc, id_generate, localize_date
 
 
 def test_convert_date_to_utc_normal_time():

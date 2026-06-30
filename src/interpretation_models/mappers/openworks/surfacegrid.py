@@ -1,12 +1,12 @@
 import math
 
-from models import SourceContext
-from models import OWSurfaceGridMetadata, InterpretationProcessingMetadata
-from models import GridGeometry
-from models import SurfaceGridRecord
-from models import InterpretationDataType
-from mappers.openworks import metadata
-from mappers.helpers import id_generate
+from interpretation_models.models import SourceContext
+from interpretation_models.models import OWSurfaceGridMetadata, InterpretationProcessingMetadata
+from interpretation_models.models import GridGeometry
+from interpretation_models.models import SurfaceGridRecord
+from interpretation_models.models import InterpretationDataType
+from interpretation_models.mappers.openworks import metadata
+from interpretation_models.mappers.helpers import id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
 

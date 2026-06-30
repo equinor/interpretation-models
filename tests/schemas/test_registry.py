@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pytest
 
-from schemas.registry import SchemaName, SchemaRegistry
+from interpretation_models.schemas.registry import SchemaName, SchemaRegistry
 
 
 @pytest.fixture

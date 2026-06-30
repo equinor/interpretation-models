@@ -58,25 +58,25 @@ The current list of supported combinations is:
 
 This repo is mostly separated into four major components based on the different objects:
 
-#### Interpretation models (src/models)
+#### Interpretation models (src/interpretation_models/models)
 
 Define the internal composable, hierarchical Python classes to describe interpretation metadata and structure.
 
 Design rules in docs/models.md
 
-#### Model mapping (src/mappers)
+#### Model mapping (src/interpretation_models/mappers)
 
 Provide deterministic mappers between source-system models and the internal interpretation model.
 
 Design rules in docs/mappers.md
 
-#### Validation (src/validations)
+#### Validation (src/interpretation_models/validations)
 
 Apply schema- and content-level validation and recording the results, without blocking data flow.
 
 Design rules in docs/validation.md
 
-#### Table schemas and relationships (src/tables)
+#### Table schemas and relationships (src/interpretation_models/tables)
 
 This bridges the gap between pydantic models and the need to generate table schemas for representation of the internal model in storage.
 It includes flattening rules for attribute names, representing FKs, creating m:n relationship tables, especially for collections.

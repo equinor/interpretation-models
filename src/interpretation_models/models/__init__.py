@@ -4,7 +4,7 @@ Public API re-exports the interpretation record models and enums at the top leve
 Source-specific models live in submodules (e.g. ``models.petrel``).
 """
 
-from models.interpretations import (
+from interpretation_models.models.interpretations import (
     # Interpretation records
     InterpretationRecord,
     GridGeometry,
@@ -30,14 +30,14 @@ from models.interpretations import (
     Point,
 )
 
-from models.enums import (
+from interpretation_models.models.enums import (
     SourceSystem,
     InterpretationDataType,
     UpdateType,
     OWDataType,
 )
 
-from models import petrel
+from interpretation_models.models import petrel
 
 __all__ = [
     # Interpretation records

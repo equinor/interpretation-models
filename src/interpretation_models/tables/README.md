@@ -17,7 +17,7 @@ The variable `SCHEMA_VERSION` in the source file `schema_versioning.py` will det
 Create a new schema using a new version determined by the SCHEMA_VERSION variable
 
 ```python
-> python -m tables.generate_schemas
+> python -m interpretation_models.tables.generate_schemas
 ```
 
 #### Update the current schema
@@ -25,5 +25,5 @@ Create a new schema using a new version determined by the SCHEMA_VERSION variabl
 Update the current schema using the existing version number
 
 ```python
-> python -m tables.generate_schemas --overwrite
+> python -m interpretation_models.tables.generate_schemas --overwrite
 ```

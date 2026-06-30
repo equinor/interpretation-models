@@ -28,7 +28,7 @@ Concrete datatypes inherit from `InterpretationRecord`, directly or through the 
 
 The example below shows the hierarchy.
 It includes example attributes, but the diagram is not guaranteed to comprehensively include all attributes.
-For an updated description of all clses and attributes, see the code in [interpretation.py](../src/models/interpretations/interpretation.py)
+For an updated description of all clses and attributes, see the code in [interpretation.py](../src/interpretation_models/models/interpretations/interpretation.py)
 
 ```mermaid
 classDiagram
@@ -159,17 +159,17 @@ Because this repository maps between models that represent the same concepts in 
 The internal interpretation models try to reduce ambiguity by using names that are more specific than the raw datatype name (for example SurfaceGridRecord and SurfaceGridInterpretation rather than just SurfaceGrid), but collisions are still possible.
 For example, names such as HorizonInterpretation and FaultInterpretation also have specific meanings in RESQML.
 
-The interpretation record models are re-exported at the top level of the ``models`` package, so the simplest import is:
+The interpretation record models are re-exported at the top level of the ``interpretation_models.models`` package, so the simplest import is:
 
 ```python
-from models import SurfaceGridRecord, SourceContext
+from interpretation_models.models import SurfaceGridRecord, SourceContext
 ```
 
 Source-specific models live in submodules and should be imported with a qualifier to avoid name collisions:
 
 ```python
-from models import SurfaceGridRecord
-from models import petrel
+from interpretation_models.models import SurfaceGridRecord
+from interpretation_models.models import petrel
 from dsis_model_sdk.models import common as ow
 
 ow_surface: ow.SurfaceGrid = dsis_fetch(...)
@@ -179,7 +179,7 @@ surface_record: SurfaceGridRecord = surfacegrid_from_ow(ow_surface, ...)
 When multiple model systems appear in the same file and disambiguation is needed, the ``interpretations`` submodule can also be imported with a qualifier:
 
 ```python
-from models import interpretations, petrel
+from interpretation_models.models import interpretations, petrel
 from dsis_model_sdk.models import common as ow
 
 ow_surface: ow.SurfaceGrid = dsis_fetch(...)

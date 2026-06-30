@@ -18,8 +18,8 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-"models" = ["py.typed"]
-"schemas" = ["definitions/**/*.json"]
+"interpretation_models.models" = ["py.typed"]
+"interpretation_models.schemas" = ["definitions/**/*.json"]
 
 [dependency-groups]
 dev = [

@@ -8,13 +8,13 @@ expected dicts to guard the contract.
 
 import pytest
 
-from mappers import collection_from_ow, collection_item_from_ow
-from models import Collection, CollectionItem
-from models import SourceContext
-from tables import flatten_record, flatten_columns
+from interpretation_models.mappers import collection_from_ow, collection_item_from_ow
+from interpretation_models.models import Collection, CollectionItem
+from interpretation_models.models import SourceContext
+from interpretation_models.tables import flatten_record, flatten_columns
 
 from dsis_model_sdk.models.native import ISetDataObject
-from mappers.openworks.collection import _resolve_id
+from interpretation_models.mappers.openworks.collection import _resolve_id
 
 # ---------------------------------------------------------------------------
 # Collection mapping

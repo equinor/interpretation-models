@@ -30,7 +30,7 @@ class SchemaRegistry:
     def __new__(cls) -> Self:
         if cls._instance is None:
             instance = super().__new__(cls)
-            instance._definitions_path = importlib.resources.files("schemas") / "definitions"
+            instance._definitions_path = importlib.resources.files("interpretation_models.schemas") / "definitions"
             cls._instance = instance
             
         return cls._instance

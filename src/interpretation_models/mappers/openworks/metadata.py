@@ -1,8 +1,8 @@
 from typing import TypeAlias
 
-from mappers.helpers import convert_date_to_utc
-from models import SourceContext, SourceMetadata, InterpretationSourceMetadata
-from models import SourceSystem
+from interpretation_models.mappers.helpers import convert_date_to_utc
+from interpretation_models.models import SourceContext, SourceMetadata, InterpretationSourceMetadata
+from interpretation_models.models import SourceSystem
 
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
