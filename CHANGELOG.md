@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.0](https://github.com/equinor/interpretation-models/compare/v0.8.0...v1.0.0) (2026-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* top-level imports have moved under the interpretation_models namespace. Update imports and reinstall:
+    - from models import ... -> from interpretation_models.models import ...
+    - from mappers import ... -> from interpretation_models.mappers import
+    ...
+    - from tables import ... -> from interpretation_models.tables import ...
+    - from schemas import ... -> from interpretation_models.schemas import
+    ...
+
+### Code Refactoring
+
+* nest all modules under the 'interpretation_models' package ([#54](https://github.com/equinor/interpretation-models/issues/54)) ([c444ef8](https://github.com/equinor/interpretation-models/commit/c444ef803f253c4fdab42b9b82982e1f1f2e658d))
+
 ## [0.8.0](https://github.com/equinor/interpretation-models/compare/v0.7.0...v0.8.0) (2026-06-16)
 
 
