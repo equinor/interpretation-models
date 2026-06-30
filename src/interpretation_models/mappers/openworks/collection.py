@@ -1,12 +1,12 @@
 import json
 import re
 
-from models import SourceContext
-from models import OWDataType, InterpretationDataType
-from models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
-from models import Collection, CollectionItem
-from mappers.openworks import metadata
-from mappers.helpers import id_generate
+from interpretation_models.models import SourceContext
+from interpretation_models.models import OWDataType, InterpretationDataType
+from interpretation_models.models import ProcessingMetadata, OWCollectionMetadata, OWCollectionItemMetadata, InterpretationProcessingMetadata
+from interpretation_models.models import Collection, CollectionItem
+from interpretation_models.mappers.openworks import metadata
+from interpretation_models.mappers.helpers import id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 

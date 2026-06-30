@@ -10,14 +10,14 @@ which models are serialized or to add manually-defined support tables.
 
 from pathlib import Path
 
-from tables import (
+from interpretation_models.tables import (
     ModelTableDef,
     TableSpec,
     model_to_tablespec,
     tablespec_to_json,
 )
-from tables.table_definitions import MODEL_TABLES, SUPPORT_TABLES
-from tables.schema_versioning import SCHEMA_VERSION
+from interpretation_models.tables.table_definitions import MODEL_TABLES, SUPPORT_TABLES
+from interpretation_models.tables.schema_versioning import SCHEMA_VERSION
 
 
 def generate_table_schemas(

@@ -1,5 +1,5 @@
-from tables.tablespec import ColumnSpec, ForeignKeySpec, ModelTableDef, TableSpec
-from tables.model_to_table import (
+from interpretation_models.tables.tablespec import ColumnSpec, ForeignKeySpec, ModelTableDef, TableSpec
+from interpretation_models.tables.model_to_table import (
     flatten_columns,
     flatten_record,
     model_to_tablespec,

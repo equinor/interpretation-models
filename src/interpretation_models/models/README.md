@@ -1,4 +1,4 @@
-#### Interpretation models (src/models)
+#### Interpretation models (src/interpretation_models/models)
 
 Define the internal composable, hierarchical Python classes to describe interpretation metadata and structure.
 Used as a bridge model between different source/target models for conversions

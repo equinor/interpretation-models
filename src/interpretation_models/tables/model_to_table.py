@@ -10,7 +10,7 @@ from typing import Any, Union, get_args, get_origin
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 
-from tables.tablespec import ColumnSpec, ModelTableDef, TableSpec
+from interpretation_models.tables.tablespec import ColumnSpec, ModelTableDef, TableSpec
 
 # ---------------------------------------------------------------------------
 # Type helpers

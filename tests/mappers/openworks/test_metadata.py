@@ -1,9 +1,9 @@
 import datetime
 
-from mappers.helpers import convert_date_to_utc
-from mappers.openworks import metadata
-from models import SourceContext, SourceMetadata
-from models import SourceSystem
+from interpretation_models.mappers.helpers import convert_date_to_utc
+from interpretation_models.mappers.openworks import metadata
+from interpretation_models.models import SourceContext, SourceMetadata
+from interpretation_models.models import SourceSystem
 from dsis_model_sdk.models.native import InterpretationSet
 
 

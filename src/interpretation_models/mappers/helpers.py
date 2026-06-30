@@ -1,6 +1,6 @@
 import datetime
 
-from models import SourceContext
+from interpretation_models.models import SourceContext
 import pytz
 
 

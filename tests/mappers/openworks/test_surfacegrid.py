@@ -7,9 +7,9 @@ and values match the record.
 
 
 import pytest
-from mappers import surfacegrid_from_ow
-from models import SurfaceGridRecord
-from tables import flatten_record, flatten_columns
+from interpretation_models.mappers import surfacegrid_from_ow
+from interpretation_models.models import SurfaceGridRecord
+from interpretation_models.tables import flatten_record, flatten_columns
 
 @pytest.fixture
 def surface_record(surfacegrid_obj, source_context, processing_metadata) -> SurfaceGridRecord:
