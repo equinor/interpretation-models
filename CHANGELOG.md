@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/equinor/interpretation-models/compare/v1.0.0...v1.1.0) (2026-07-01)
+
+
+### Features
+
+* added logging statements ([#57](https://github.com/equinor/interpretation-models/issues/57)) ([2a97a0a](https://github.com/equinor/interpretation-models/commit/2a97a0a4b2927caa0dbd6e2e868246c6186fc1c4))
+
 ## [1.0.0](https://github.com/equinor/interpretation-models/compare/v0.8.0...v1.0.0) (2026-06-30)
 
 
