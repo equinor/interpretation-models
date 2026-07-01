@@ -11,6 +11,9 @@ from interpretation_models.mappers.helpers import id_generate
 from dsis_model_sdk.models.native import InterpretationSet, ISetDataObject
 
 
+logger = logging.getLogger(__name__)
+
+
 def collection_from_ow(
     ow_iset: InterpretationSet,
     source_context: SourceContext,
@@ -26,7 +29,7 @@ def collection_from_ow(
     Returns:
         Collection instance
     """
-    logging.debug("Calling collection_from_ow()")
+    logger.debug("Calling collection_from_ow()")
 
     source_metadata = metadata.source_metadata_from_ow(
         ow_object=ow_iset,
@@ -113,7 +116,7 @@ def collection_item_from_ow(
     Returns:
         CollectionItem instance
     """
-    logging.debug("Calling collection_item_from_ow()")
+    logger.debug("Calling collection_item_from_ow()")
 
     ow_id: str = str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.data_key
     source_metadata = metadata.source_metadata_from_ow(
