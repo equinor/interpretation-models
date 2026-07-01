@@ -8,6 +8,7 @@ import re
 from enum import StrEnum
 from typing import Self
 
+logger = logging.getLogger(__name__)
 
 class SchemaName(StrEnum):
     """Known table schema names."""
@@ -30,7 +31,7 @@ class SchemaRegistry:
 
     def __new__(cls) -> Self:
         if cls._instance is None:
-            logging.debug("Initializing the 'SchemaRegistry'")
+            logger.debug("Initializing the 'SchemaRegistry'")
             
             instance = super().__new__(cls)
             instance._definitions_path = importlib.resources.files("interpretation_models.schemas") / "definitions"
@@ -59,7 +60,7 @@ class SchemaRegistry:
         
         last_version = all_versions[-1]
 
-        logging.debug(f"Latest schema version determined: '{last_version}'")
+        logger.debug(f"Latest schema version determined: '{last_version}'")
 
         return last_version
 
@@ -79,14 +80,14 @@ class SchemaRegistry:
         ref = self._definitions_path / f"v{version}" / f"{name.value}.json"
 
         try:
-            logging.debug(f"Loading schema from {ref} for {name.value}, version {version}")
+            logger.debug(f"Loading schema from {ref} for {name.value}, version {version}")
             content = ref.read_text(encoding="utf-8")
         except FileNotFoundError as exc:
             message = f"Schema not found: v{version}/{name.value}.json"
-            logging.error(message)
+            logger.error(message)
             raise FileNotFoundError(message) from exc
         
-        logging.debug(f"Loaded schema for {name.value}")
+        logger.debug(f"Loaded schema for {name.value}")
 
         return json.loads(content)
 

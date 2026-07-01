@@ -10,6 +10,8 @@ from interpretation_models.mappers.openworks import metadata
 from interpretation_models.mappers.helpers import id_generate
 from dsis_model_sdk.models.common import SurfaceGrid, SurfaceGridProperties
 
+logger = logging.getLogger(__name__)
+
 
 def _calculate_extent_from_geometry(geometry: GridGeometry) -> None:
     return None  # TODO: implement extent calculation based on grid geometry (bulk data)
@@ -48,7 +50,7 @@ def surfacegrid_from_ow(
     Returns:
         SurfaceGridRecord instance
     """
-    logging.debug("Calling surfacegrid_from_ow() - Mapping OW SurfaceGrid to SurfaceGridRecord")
+    logger.debug("Calling surfacegrid_from_ow() - Mapping OW SurfaceGrid to SurfaceGridRecord")
 
     # id is nullable, so we try to iterate through other unique attributes in case it is null
     native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
@@ -85,7 +87,7 @@ def surfacegrid_from_ow(
 
     id = id_generate(source_context, f"{InterpretationDataType.SURFACE_GRID.value}:{native_id}")
 
-    logging.debug(f"SurfaceGridRecord created with id: {id}")
+    logger.debug(f"SurfaceGridRecord created with id: {id}")
 
     return SurfaceGridRecord(
         id=id,
