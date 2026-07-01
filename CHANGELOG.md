@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/equinor/interpretation-models/compare/v1.1.0...v1.1.1) (2026-07-01)
+
+
+### Bug Fixes
+
+* corrected logging statements to not use root logger ([#59](https://github.com/equinor/interpretation-models/issues/59)) ([b7f74b3](https://github.com/equinor/interpretation-models/commit/b7f74b3d4dc55427be4cdd29d3b71e7df4ee8950))
+
 ## [1.1.0](https://github.com/equinor/interpretation-models/compare/v1.0.0...v1.1.0) (2026-07-01)
 
 
