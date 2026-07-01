@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 
 from interpretation_models.models import SourceContext
@@ -25,6 +26,8 @@ def collection_from_ow(
     Returns:
         Collection instance
     """
+    logging.debug("Calling collection_from_ow()")
+
     source_metadata = metadata.source_metadata_from_ow(
         ow_object=ow_iset,
         source_context=source_context,
@@ -110,6 +113,8 @@ def collection_item_from_ow(
     Returns:
         CollectionItem instance
     """
+    logging.debug("Calling collection_item_from_ow()")
+
     ow_id: str = str(ow_data_object.data_object_id) if ow_data_object.data_object_id else ow_data_object.data_key
     source_metadata = metadata.source_metadata_from_ow(
         ow_object=ow_data_object, 

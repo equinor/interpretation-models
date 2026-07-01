@@ -1,4 +1,5 @@
 import math
+import logging
 
 from interpretation_models.models import SourceContext
 from interpretation_models.models import OWSurfaceGridMetadata, InterpretationProcessingMetadata
@@ -47,6 +48,8 @@ def surfacegrid_from_ow(
     Returns:
         SurfaceGridRecord instance
     """
+    logging.debug("Calling surfacegrid_from_ow() - Mapping OW SurfaceGrid to SurfaceGridRecord")
+
     # id is nullable, so we try to iterate through other unique attributes in case it is null
     native_id: str = ow_surface.native_uid or ow_surface.alternate_uid or ow_surface.map_data_set_name
 
@@ -80,8 +83,12 @@ def surfacegrid_from_ow(
         left_handed=True,
     )
 
+    id = id_generate(source_context, f"{InterpretationDataType.SURFACE_GRID.value}:{native_id}")
+
+    logging.debug(f"SurfaceGridRecord created with id: {id}")
+
     return SurfaceGridRecord(
-        id=id_generate(source_context, f"{InterpretationDataType.SURFACE_GRID.value}:{native_id}"),
+        id=id,
         source=source_metadata,
         source_ow=source_ow_metadata,
         processing=processing_metadata,

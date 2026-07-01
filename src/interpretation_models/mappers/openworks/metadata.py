@@ -1,3 +1,4 @@
+import logging
 from typing import TypeAlias
 
 from interpretation_models.mappers.helpers import convert_date_to_utc
@@ -29,6 +30,8 @@ def source_metadata_from_ow(
     The ``id`` and ``name`` parameters are caller-specific since each OW type derives them differently.
     update date and user fallback to create date and user if empty, as OW doesn't set them at object creation
     """
+    logging.debug("Calling source_metadata_from_ow()")
+
     update_date = ow_object.update_date or ow_object.create_date
     update_user = ow_object.update_user_id or ow_object.create_user_id
     
@@ -60,6 +63,9 @@ def interpretation_source_metadata_from_ow(
     z_unit: str | None = None,
 ) -> InterpretationSourceMetadata:
     """Map common OW metadata fields to InterpretationSourceMetadata, including interpretation-specific fields."""
+
+    logging.debug("Calling interpretation_source_metadata_from_ow()")
+
     base_metadata = source_metadata_from_ow(ow_object, source_context, id=id, name=name)
     return InterpretationSourceMetadata(
         **base_metadata.model_dump(),
