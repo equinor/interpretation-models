@@ -19,8 +19,10 @@ class UpdateType(str, Enum):
     OBJECT_CREATE = "ObjectCreate"
     OBJECT_UPDATE = "ObjectUpdate"
     OBJECT_DELETE = "ObjectDelete"
+    COLLECTION_CREATE = "CollectionCreate"
     COLLECTION_INSERT = "CollectionInsert"
     COLLECTION_REMOVE = "CollectionRemove"
+    COLLECTION_DELETE = "CollectionDelete"
 
 
 class OWDataType(str, Enum):
