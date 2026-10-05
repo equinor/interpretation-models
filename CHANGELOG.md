@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/equinor/interpretation-models/compare/v1.1.1...v1.2.0) (2026-10-05)
+
+
+### Features
+
+* **models:** added new collection events ([#63](https://github.com/equinor/interpretation-models/issues/63)) ([d3f6893](https://github.com/equinor/interpretation-models/commit/d3f68935dbf9467da845176f998deadb14c3f2db))
+
 ## [1.1.1](https://github.com/equinor/interpretation-models/compare/v1.1.0...v1.1.1) (2026-07-01)
 
 
