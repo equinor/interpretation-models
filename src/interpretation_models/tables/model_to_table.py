@@ -1,11 +1,12 @@
 """Generation of TableSpec instances from Pydantic models and serialization to JSON."""
 
 import json
+import math
 import types
-from collections.abc import Iterator
+from collections.abc import Iterator, Mapping
 from datetime import datetime
 from enum import Enum
-from typing import Any, Union, get_args, get_origin
+from typing import Any, TypeVar, Union, get_args, get_origin
 
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -101,6 +102,10 @@ def _walk_model_fields(
 # ---------------------------------------------------------------------------
 
 
+class UnknownColumnError(ValueError):
+    """Raised when a flat record contains columns not defined by the model."""
+
+
 def flatten_columns(model: type[BaseModel]) -> list[ColumnSpec]:
     """Generate a list of ``ColumnSpec`` from a Pydantic model class.
 
@@ -140,6 +145,51 @@ def flatten_record(instance: BaseModel) -> dict[str, object]:
                 break
         result[col_name] = value
     return result
+
+
+TBaseModel = TypeVar("TBaseModel", bound=BaseModel)
+
+
+def _is_missing(value: object) -> bool:
+    return value is None or (isinstance(value, float) and math.isnan(value))
+
+
+def _prune_empty(node: dict[str, Any]) -> dict[str, Any] | None:
+    """Replace nested dicts whose leaves are all ``None`` with ``None``."""
+    for key, value in node.items():
+        if isinstance(value, dict):
+            node[key] = _prune_empty(value)
+    return None if all(v is None for v in node.values()) else node
+
+
+def unflatten_record(model: type[TBaseModel], row: Mapping[str, object]) -> TBaseModel:
+    """Build a model instance from a flat record — the inverse of ``flatten_record``.
+
+    Keys not matching a flattened column raise ``UnknownColumnError``; columns absent from ``row``
+    fall back to the model defaults. NaN values are treated as ``None``, and nested
+    models whose values are all ``None`` are set to ``None``.
+    """
+    fields = list(_walk_model_fields(model))
+    valid_columns = {col_name for col_name, *_ in fields}
+    invalid_columns = sorted(set(row) - valid_columns)
+    if invalid_columns:
+        raise UnknownColumnError(f"Unknown columns for {model.__name__}: {invalid_columns}")
+
+    nested: dict[str, Any] = {}
+    for col_name, src_path, *_ in fields:
+        if col_name not in row:
+            continue
+        value = row[col_name]
+        *parents, leaf = src_path.split(".")
+        target = nested
+        for part in parents:
+            target = target.setdefault(part, {})
+        target[leaf] = None if _is_missing(value) else value
+
+    for key, value in nested.items():
+        if isinstance(value, dict):
+            nested[key] = _prune_empty(value)
+    return model.model_validate(nested)
 
 
 def model_to_tablespec(
