@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/equinor/interpretation-models/compare/v1.2.0...v1.3.0) (2026-10-08)
+
+
+### Features
+
+* **tables:** added functionality to unflatten records ([#62](https://github.com/equinor/interpretation-models/issues/62)) ([de2e1e0](https://github.com/equinor/interpretation-models/commit/de2e1e0176377e33281daed6f4cbfcc3bc7d8961))
+
 ## [1.2.0](https://github.com/equinor/interpretation-models/compare/v1.1.1...v1.2.0) (2026-10-05)
 
 
