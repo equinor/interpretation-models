@@ -48,13 +48,17 @@ class TestSurfaceGridRecordToResqml:
 
         assert surface_grid_record.geometry.ncol == gri.grid2d_patch.slowest_axis_count
         assert surface_grid_record.geometry.nrow == gri.grid2d_patch.fastest_axis_count
+
         offset1 = gri.grid2d_patch.geometry.points.supporting_geometry.offset[0]
         offset2 = gri.grid2d_patch.geometry.points.supporting_geometry.offset[1]
         origin = gri.grid2d_patch.geometry.points.supporting_geometry.origin
+
         uv1 = offset1.offset
         spacing1 = offset1.spacing
+
         uv2 = offset2.offset
         spacing2 = offset2.spacing
+
         angle_x = np.rad2deg(np.atan2(uv1.coordinate2, uv1.coordinate1))
         angle_y = np.rad2deg(np.atan2(uv2.coordinate2, uv2.coordinate1))
 
@@ -69,3 +73,9 @@ class TestSurfaceGridRecordToResqml:
         )
         assert abs(surface_grid_record.geometry.xori - origin.coordinate1) < 1e-12
         assert abs(surface_grid_record.geometry.yori - origin.coordinate2) < 1e-12
+
+        assert abs(spacing1.value - surface_grid_record.geometry.xinc) < 1e-12
+        assert abs(spacing2.value - surface_grid_record.geometry.yinc) < 1e-12
+
+        assert spacing1.count == surface_grid_record.geometry.ncol - 1
+        assert spacing2.count == surface_grid_record.geometry.nrow - 1
