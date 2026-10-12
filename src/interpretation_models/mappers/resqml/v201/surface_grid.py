@@ -23,7 +23,7 @@ class CRSInfo(typing.NamedTuple):
     horizontal_units: str | None
 
 
-def time_length_unit_mapper(unit: str) -> ro.TimeUom | ro.LengthUom:
+def _time_length_unit_mapper(unit: str) -> ro.TimeUom | ro.LengthUom:
     # Clean the units; make them lower and strip trailing whitespace.
     unit = unit.lower().strip()
 
@@ -44,7 +44,7 @@ def time_length_unit_mapper(unit: str) -> ro.TimeUom | ro.LengthUom:
     raise ValueError(f"Unit {unit} does not have a mapping to RESQML units")
 
 
-def zincreasing_downward_map(z_domain: str) -> bool:
+def _zincreasing_downward_map(z_domain: str) -> bool:
     # Clean the domain text.
     z_domain = z_domain.upper().strip()
 
@@ -163,7 +163,7 @@ def surface_grid_record_to_resqml(
         authority="Equinor",
     )
 
-    z_unit = time_length_unit_mapper(surface.source.z_unit)
+    z_unit = _time_length_unit_mapper(surface.source.z_unit)
 
     # Check that the z-unit makes sense for the z-domain. A length-based
     # (`ro.LengthUom`) z-unit should have a z-domain of `"DEPTH"`. Similarly,
@@ -257,7 +257,7 @@ def surface_grid_record_to_resqml(
         # dealing with a `ro.obj_LocalTime3dCrs`-object.
         "vertical_uom": vertical_uom,
         # The direction of positive z-values is decided by the `source.z_domain`.
-        "zincreasing_downward": zincreasing_downward_map(surface.source.z_domain),
+        "zincreasing_downward": _zincreasing_downward_map(surface.source.z_domain),
         "aliases": [raw_crs_alias, osdu_crs_alias],
     }
 
