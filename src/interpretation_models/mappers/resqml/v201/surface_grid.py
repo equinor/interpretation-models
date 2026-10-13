@@ -1,4 +1,5 @@
 import math
+from dataclasses import dataclass
 import typing
 import uuid
 from datetime import datetime, timezone
@@ -10,7 +11,8 @@ from interpretation_models.models import SurfaceGridRecord
 from interpretation_models.tables import flatten_record
 
 
-class CRSInfo(typing.NamedTuple):
+@dataclass(frozen=True)
+class CRSInfo:
     """Container with relevant CRS information (for our use-case) fetched from
     a `reference-data--CoordinateSystemReference:1.*`-object in OSDU core.
     """
