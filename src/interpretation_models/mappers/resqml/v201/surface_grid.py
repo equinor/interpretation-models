@@ -116,9 +116,15 @@ def surface_grid_record_to_resqml(
     if surface.geometry.rotation is None:
         raise ValueError("Missing `geometry.rotation`-field")
 
+    if surface.source is None:
+        raise ValueError("Missing source info")
+
     # We should not process a surface if the `surface.source.crs` is missing.
     if surface.source.crs is None:
         raise ValueError("Missing source crs")
+
+    if surface.source.z_unit is None:
+        raise ValueError("Missing units for the z-values")
 
     if originator is None and surface.source.create_user is None:
         raise ValueError(
@@ -127,8 +133,22 @@ def surface_grid_record_to_resqml(
         )
 
     # We currently don't process any other domains than `"TIME"` and `"DEPTH"`.
-    if surface.z_domain == "OTHER":
-        raise ValueError("Invalid domain")
+    if surface.z_domain is None or surface.z_domain == "OTHER":
+        raise ValueError(
+            f"Domain '{surface.z_domain}' is invalid. Only 'Time' and 'Depth' is "
+            "supported."
+        )
+
+    if surface.geometry is None:
+        raise ValueError("Missing geometry")
+
+    errors = []
+    for field_name, field_value in surface.geometry.__class__.model_fields.items():
+        if field_value is None:
+            errors.append(ValueError(f"Missing field '{field_name}'"))
+
+    if len(errors) > 0:
+        raise ExceptionGroup("One or more fields missing in surface.geometry", errors)
 
     # Use repeatable uuuids.
     epc_uuid = uuid.uuid5(uuid_namespace, f"{surface.id}|epc")
