@@ -151,9 +151,9 @@ def surface_grid_record_to_resqml(
         raise ExceptionGroup("One or more fields missing in surface.geometry", errors)
 
     # Use repeatable uuuids.
-    epc_uuid = uuid.uuid5(uuid_namespace, f"{surface.id}|epc")
-    crs_uuid = uuid.uuid5(uuid_namespace, f"{surface.id}|crs")
-    gri_uuid = uuid.uuid5(uuid_namespace, f"{surface.id}|grid")
+    epc_uuid = str(uuid.uuid5(uuid_namespace, f"{surface.id}|epc"))
+    crs_uuid = str(uuid.uuid5(uuid_namespace, f"{surface.id}|crs"))
+    gri_uuid = str(uuid.uuid5(uuid_namespace, f"{surface.id}|grid"))
 
     title = surface.source.name or surface.id
     now = datetime.now(tz=timezone.utc)
