@@ -11,7 +11,7 @@ import pytest
 from interpretation_models.mappers import collection_from_ow, collection_item_from_ow
 from interpretation_models.models import Collection, CollectionItem
 from interpretation_models.models import SourceContext
-from interpretation_models.tables import flatten_record, flatten_columns
+from interpretation_models.tables import flatten_record, flatten_columns, unflatten_record
 
 from dsis_model_sdk.models.native import ISetDataObject
 from interpretation_models.mappers.openworks.collection import _resolve_id
@@ -107,6 +107,17 @@ def test_map2d_item_flat_values(ow_isetdataobject_map2d, source_context):
         "processing_update_date_utc": None,
     }
     assert flat == expected
+
+
+def test_collection_unflatten_round_trip(ow_interpretation_set, source_context):
+    coll = collection_from_ow(ow_interpretation_set, source_context)
+    assert unflatten_record(Collection, flatten_record(coll)) == coll
+
+
+def test_collection_item_unflatten_round_trip(ow_isetdataobject_rgrid, source_context):
+    ci = collection_item_from_ow(ow_isetdataobject_rgrid, source_context)
+    assert unflatten_record(CollectionItem, flatten_record(ci)) == ci
+
 
 def test_rgrid_item_flat_values(ow_isetdataobject_rgrid, source_context):
     ci = collection_item_from_ow(ow_isetdataobject_rgrid, source_context)

@@ -9,7 +9,7 @@ and values match the record.
 import pytest
 from interpretation_models.mappers import surfacegrid_from_ow
 from interpretation_models.models import SurfaceGridRecord
-from interpretation_models.tables import flatten_record, flatten_columns
+from interpretation_models.tables import UnknownColumnError, flatten_record, flatten_columns, unflatten_record
 
 @pytest.fixture
 def surface_record(surfacegrid_obj, source_context, processing_metadata) -> SurfaceGridRecord:
@@ -103,3 +103,40 @@ class TestFlattenSurfaceGridRecord:
         """All values should be JSON-compatible primitives (no Pydantic objects)."""
         import json
         json.dumps(flat, default=str)  # should not raise
+
+
+class TestUnflattenSurfaceGridRecord:
+    """Verify flat records can be turned back into SurfaceGridRecord."""
+
+    def test_round_trip(self, surface_record):
+        flat = flatten_record(surface_record)
+        assert unflatten_record(SurfaceGridRecord, flat) == surface_record
+
+    def test_empty_nested_models_become_none(self, surface_record):
+        record = unflatten_record(SurfaceGridRecord, flatten_record(surface_record))
+        assert record.source_petrel is None
+        assert record.extent is None
+
+    def test_nan_treated_as_none_and_missing_columns_use_defaults(self):
+        record = unflatten_record(
+            SurfaceGridRecord,
+            {"id": "x", "geometry_ncol": 3, "geometry_xinc": float("nan")},
+        )
+        assert record.geometry is not None
+        assert record.geometry.ncol == 3
+        assert record.geometry.xinc is None
+        assert record.geometry.left_handed is True  # default kept for missing column
+
+    @pytest.mark.parametrize(
+        "invalid_keys",
+        [
+            ["not_a_column"],
+            ["geometry.ncol"],
+            ["unknown", "not_a_column"],
+        ],
+    )
+    def test_invalid_keys_raise_unknown_column_error(self, invalid_keys):
+        row = {key: 1 for key in invalid_keys}
+        with pytest.raises(UnknownColumnError) as exc_info:
+            unflatten_record(SurfaceGridRecord, row)
+        assert isinstance(exc_info.value, ValueError)
