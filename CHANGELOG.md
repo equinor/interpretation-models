@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/equinor/interpretation-models/compare/v1.2.0...v1.3.0) (2026-10-25)
+
+
+### Features
+
+* add mapping from `SurfaceGridRecord` to RESQML v2.0.1 models ([#67](https://github.com/equinor/interpretation-models/issues/67)) ([fabbfaa](https://github.com/equinor/interpretation-models/commit/fabbfaa9f6a72066ddacec701efa799fe195a94e))
+* **tables:** added functionality to unflatten records ([#62](https://github.com/equinor/interpretation-models/issues/62)) ([de2e1e0](https://github.com/equinor/interpretation-models/commit/de2e1e0176377e33281daed6f4cbfcc3bc7d8961))
+
 ## [1.2.0](https://github.com/equinor/interpretation-models/compare/v1.1.1...v1.2.0) (2026-10-05)
 
 
