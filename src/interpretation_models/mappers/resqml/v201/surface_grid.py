@@ -23,6 +23,8 @@ class CRSInfo:
     code_as_number: int
     crs_type: str
     horizontal_units: str | None
+    source_crs_authority: str | None
+    source_crs_code: int | None
 
 
 def _time_length_unit_mapper(unit: str) -> ro.TimeUom | ro.LengthUom:
@@ -229,10 +231,19 @@ def surface_grid_record_to_resqml(
         assert 1024 <= projected_epsg_code < 32767
         projected_crs = ro.ProjectedCrsEpsgCode(epsg_code=projected_epsg_code)
     elif osdu_crs.code_space.lower() == "equinor":
-        # Add the EPSG-like code from Equinor as an unknown crs.
-        projected_crs = ro.ProjectedUnknownCrs(
-            unknown=f"Equinor code: {osdu_crs.code_as_number}",
-        )
+        # Check if the bound CRS uses an EPSG-code for its source crs. If so,
+        # we populate the projected crs with this code.
+        if (
+            osdu_crs.source_crs_authority is not None
+            and osdu_crs.source_crs_code is not None
+        ):
+            assert osdu_crs.source_crs_authority.lower() == "epsg"
+            projected_crs = ro.ProjectedCrsEpsgCode(epsg_code=osdu_crs.source_crs_code)
+        else:
+            # Add the EPSG-like code from Equinor as an unknown crs.
+            projected_crs = ro.ProjectedUnknownCrs(
+                unknown=f"Equinor code: {osdu_crs.code_as_number}",
+            )
 
     # Hacky way to get the data partition id for comparing the projected uom
     # values.

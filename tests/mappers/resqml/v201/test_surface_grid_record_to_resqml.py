@@ -10,10 +10,12 @@ class TestSurfaceGridRecordToResqml:
         crs_info = CRSInfo(
             name=surface_grid_record.source.crs,
             record_id="dev:reference-data--CoordinateSystemReference:1.2.0:123456",
-            code_space="EPSG",
-            code_as_number=4567,
-            crs_type="ProjectedCRS",
+            code_space="Equinor",
+            code_as_number=123456567,
+            crs_type="BoundCRS",
             horizontal_units="dev:reference-data--UnitOfMeasure:m:",
+            source_crs_authority="EPSG",
+            source_crs_code=1234,
         )
         resqml_objs = surface_grid_record_to_resqml(
             surface_grid_record,
@@ -23,6 +25,7 @@ class TestSurfaceGridRecordToResqml:
         crs = resqml_objs.crs
         assert surface_grid_record.source.create_user == crs.citation.originator
         assert surface_grid_record.source.update_user == crs.citation.editor
+        assert crs.projected_crs.epsg_code == crs_info.source_crs_code
         equinor_crs_alias = next(
             filter(lambda a: a.authority == "Equinor", crs.aliases)
         )
