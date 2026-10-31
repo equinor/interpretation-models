@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/equinor/interpretation-models/compare/v1.3.0...v1.4.0) (2026-10-31)
+
+
+### Features
+
+* **mapping:** add source crs as an EPSG code ([#68](https://github.com/equinor/interpretation-models/issues/68)) ([06935fc](https://github.com/equinor/interpretation-models/commit/06935fc2a24637fd78e394c2b91e2f722de63ab4))
+
 ## [1.3.0](https://github.com/equinor/interpretation-models/compare/v1.2.0...v1.3.0) (2026-10-25)
 
 
